@@ -1661,6 +1661,89 @@ img{max-width:100%}
   }
 }
 
+
+/* FINAL MOBILE HEADER — Müşteri Paneli + Bize Ulaşın + S.S.S */
+.mobile-top-extra{
+  display:none!important;
+}
+
+@media(max-width:760px){
+  .nav{
+    gap:7px!important;
+  }
+
+  .brand{
+    margin-right:auto!important;
+    flex:0 0 auto!important;
+  }
+
+  /* Üç üst buton aynı görünüm ve yükseklik */
+  .panel-btn,
+  .mobile-top-extra{
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    min-height:40px!important;
+    height:40px!important;
+    padding:0 10px!important;
+    margin:0!important;
+    border-radius:11px!important;
+    border:1px solid #657181!important;
+    background:#070b10!important;
+    color:#f3f5f7!important;
+    font-size:8.8px!important;
+    font-weight:900!important;
+    line-height:1!important;
+    white-space:nowrap!important;
+    box-shadow:none!important;
+  }
+
+  .mobile-top-extra:hover,
+  .panel-btn:hover{
+    border-color:#d9a82d!important;
+    color:#f0bd3f!important;
+  }
+}
+
+@media(max-width:480px){
+  .nav{
+    gap:5px!important;
+  }
+
+  .brand img{
+    width:50px!important;
+    height:46px!important;
+    flex-basis:50px!important;
+  }
+
+  .panel-btn,
+  .mobile-top-extra{
+    min-height:38px!important;
+    height:38px!important;
+    padding:0 7px!important;
+    border-radius:10px!important;
+    font-size:8px!important;
+  }
+}
+
+@media(max-width:390px){
+  .wrap{
+    width:min(100% - 16px,1180px)!important;
+  }
+
+  .brand img{
+    width:46px!important;
+    height:44px!important;
+    flex-basis:46px!important;
+  }
+
+  .panel-btn,
+  .mobile-top-extra{
+    padding:0 6px!important;
+    font-size:7.6px!important;
+  }
+}
+
 </style>
 
 <meta name="theme-color" content="#050608">
@@ -1707,7 +1790,7 @@ img{max-width:100%}
 <nav><div class="wrap nav">
 <a class="brand" href="#"><img src="assets/global-iptv-logo-gold-clean.png" alt="GLOBAL TV"><span>GLOBAL TV</span></a>
 <div class="links"><a href="#">ANA SAYFA</a><a href="#paketler">PAKETLER</a><a href="#ozellikler">ÖZELLİKLER</a><a href="#sss">S.S.S</a><a href="#iletisim">İLETİŞİM</a></div>
-<a class="panel-btn" href="https://musteripaneli.xyz/index.php?page=login" target="_blank" rel="noopener">MÜŞTERİ PANELİ</a><a class="trial-nav-btn" href="https://wa.me/447729203566?text=Merhaba%20GLOBAL%20TV%2C%20%C3%BCcretsiz%20deneme%20talep%20etmek%20istiyorum." target="_blank" rel="noopener">ÜCRETSİZ DENE</a>
+<a class="panel-btn" href="https://musteripaneli.xyz/index.php?page=login" target="_blank" rel="noopener">MÜŞTERİ PANELİ</a><a class="panel-btn mobile-top-extra" href="https://wa.me/447729203566?text=Merhaba%20GLOBAL%20TV%2C%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener">BİZE ULAŞIN</a><a class="panel-btn mobile-top-extra" href="#sss">S.S.S</a><a class="trial-nav-btn" href="https://wa.me/447729203566?text=Merhaba%20GLOBAL%20TV%2C%20%C3%BCcretsiz%20deneme%20talep%20etmek%20istiyorum." target="_blank" rel="noopener">ÜCRETSİZ DENE</a>
 </div></nav>
 
 <main>
