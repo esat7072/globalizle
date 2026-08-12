@@ -1558,6 +1558,109 @@ img{max-width:100%}
   }
 }
 
+
+/* FINAL MOBILE FIX — hero butonları + ücretsiz deneme konumu */
+.mobile-trial-btn{
+  display:none;
+}
+
+@media(max-width:760px){
+  /* Ücretsiz Dene mobilde üst bardan kalkar */
+  .trial-nav-btn{
+    display:none!important;
+  }
+
+  /* Müşteri paneli sağda tek başına daha dengeli kalsın */
+  .panel-btn{
+    margin-left:auto!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    min-height:42px!important;
+    padding:0 14px!important;
+    line-height:1!important;
+  }
+
+  /* Hero aksiyonları net ve düzgün */
+  .hero-premium .actions{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:11px!important;
+    width:100%!important;
+    max-width:100%!important;
+    margin-top:26px!important;
+    padding-right:0!important;
+  }
+
+  .hero-premium .actions .btn{
+    width:100%!important;
+    min-height:54px!important;
+    height:54px!important;
+    padding:0 18px!important;
+    margin:0!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:9px!important;
+    border-radius:14px!important;
+    font-size:13px!important;
+    font-weight:900!important;
+    line-height:1!important;
+    text-align:center!important;
+    white-space:nowrap!important;
+  }
+
+  .hero-premium .actions .btn span{
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    height:auto!important;
+    margin:0 0 0 5px!important;
+    font-size:22px!important;
+    line-height:1!important;
+  }
+
+  /* Mobil Ücretsiz Dene, İletişime Geç'in altında */
+  .mobile-trial-btn{
+    display:flex!important;
+    background:linear-gradient(180deg,#f8d66b,#d99e1f)!important;
+    border:1px solid #f0bd3f!important;
+    color:#090a0c!important;
+    box-shadow:0 0 22px rgba(238,185,51,.16)!important;
+  }
+  .mobile-trial-btn span{
+    color:#111!important;
+  }
+
+  /* Üç buton için hero alanına biraz nefes */
+  .hero-premium{
+    min-height:650px!important;
+  }
+}
+
+@media(max-width:480px){
+  .hero-premium .actions{
+    max-width:100%!important;
+  }
+
+  .hero-premium .actions .btn{
+    min-height:52px!important;
+    height:52px!important;
+    font-size:12.5px!important;
+    padding:0 15px!important;
+  }
+
+  .panel-btn{
+    min-height:40px!important;
+    padding:0 12px!important;
+    font-size:9px!important;
+  }
+
+  .hero-premium{
+    min-height:640px!important;
+  }
+}
+
 </style>
 
 <meta name="theme-color" content="#050608">
@@ -1619,6 +1722,7 @@ img{max-width:100%}
       <div class="actions">
         <a class="btn primary gold-main-btn" href="#paketler">PAKETLERİ KEŞFET <span>›</span></a>
         <a class="btn gold-outline-btn" href="https://wa.me/447729203566?text=Merhaba%20GLOBAL%20TV%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener">İLETİŞİME GEÇ <span>›</span></a>
+        <a class="btn mobile-trial-btn" href="https://wa.me/447729203566?text=Merhaba%20GLOBAL%20TV%2C%20%C3%BCcretsiz%20deneme%20talep%20etmek%20istiyorum." target="_blank" rel="noopener">ÜCRETSİZ DENE <span>›</span></a>
       </div>
     </div>
 
