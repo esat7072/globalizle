@@ -1785,6 +1785,63 @@ img{max-width:100%}
   }
 }
 
+
+/* ÜCRETSİZ DENE — siyah/gold bilgilendirme popup */
+.trial-modal{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  background:rgba(0,0,0,.78);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity .22s ease,visibility .22s ease;
+}
+.trial-modal.is-open{opacity:1;visibility:visible;pointer-events:auto}
+.trial-modal__dialog{
+  width:min(520px,100%);
+  padding:34px 32px 30px;
+  border:1px solid rgba(224,173,47,.72);
+  border-radius:22px;
+  background:radial-gradient(circle at 50% 0%,rgba(219,165,38,.12),transparent 38%),linear-gradient(180deg,#0d1015 0%,#07090c 100%);
+  box-shadow:0 28px 80px rgba(0,0,0,.58),0 0 38px rgba(220,166,37,.10);
+  text-align:center;
+}
+.trial-modal__icon{
+  width:62px;height:62px;margin:0 auto 16px;display:grid;place-items:center;
+  border:1px solid rgba(229,179,52,.66);border-radius:50%;background:#090b0f;
+  font-size:28px;box-shadow:0 0 26px rgba(220,166,37,.12)
+}
+.trial-modal h2{margin:0 0 16px;color:#efc34f;font-size:26px;line-height:1.15;letter-spacing:-.4px}
+.trial-modal p{margin:0;color:#d9dde3;font-size:15px;line-height:1.75}
+.trial-modal p strong{display:block;margin-top:8px;color:#efc34f;font-weight:900}
+.trial-modal__thanks{margin-top:13px!important;color:#bfc5ce!important}
+.trial-modal__actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:26px}
+.trial-modal__contact,.trial-modal__close{
+  min-height:50px;display:flex;align-items:center;justify-content:center;border-radius:13px;
+  font-size:12px;font-weight:900;letter-spacing:.25px;text-decoration:none;cursor:pointer;
+  transition:transform .18s ease,filter .18s ease,border-color .18s ease
+}
+.trial-modal__contact{border:1px solid #e0ad2f;background:linear-gradient(180deg,#f0c34d,#d79d20);color:#08090b}
+.trial-modal__close{border:1px solid rgba(224,173,47,.72);background:#0a0d11;color:#f4f5f7;font-family:inherit}
+.trial-modal__contact:hover,.trial-modal__close:hover{transform:translateY(-1px);filter:brightness(1.05)}
+body.trial-modal-open{overflow:hidden}
+@media(max-width:560px){
+  .trial-modal{padding:18px}
+  .trial-modal__dialog{padding:28px 20px 22px;border-radius:18px}
+  .trial-modal__icon{width:56px;height:56px;margin-bottom:14px;font-size:25px}
+  .trial-modal h2{font-size:22px}
+  .trial-modal p{font-size:14px;line-height:1.65}
+  .trial-modal__actions{grid-template-columns:1fr;gap:10px;margin-top:22px}
+  .trial-modal__contact,.trial-modal__close{min-height:52px;width:100%}
+}
+
 </style>
 
 <meta name="theme-color" content="#050608">
@@ -1831,7 +1888,7 @@ img{max-width:100%}
 <nav><div class="wrap nav">
 <a class="brand" href="#"><img src="assets/global-iptv-logo-gold-clean.png" alt="GLOBAL TV"><span>GLOBAL TV</span></a>
 <div class="links"><a href="#">ANA SAYFA</a><a href="#paketler">PAKETLER</a><a href="#ozellikler">ÖZELLİKLER</a><a href="#sss">S.S.S</a><a href="#iletisim">İLETİŞİM</a></div>
-<a class="panel-btn" href="https://musteripaneli.xyz/index.php?page=login" target="_blank" rel="noopener">MÜŞTERİ PANELİ</a><a class="panel-btn mobile-top-extra" href="https://wa.me/447729203566?text=Merhaba%20GLOBAL%20TV%2C%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener">BİZE ULAŞIN</a><a class="panel-btn mobile-top-extra" href="#sss">S.S.S</a><a class="trial-nav-btn" href="https://wa.me/447729203566?text=Merhaba%20GLOBAL%20TV%2C%20%C3%BCcretsiz%20deneme%20talep%20etmek%20istiyorum." target="_blank" rel="noopener">ÜCRETSİZ DENE</a>
+<a class="panel-btn" href="https://musteripaneli.xyz/index.php?page=login" target="_blank" rel="noopener">MÜŞTERİ PANELİ</a><a class="panel-btn mobile-top-extra" href="https://wa.me/447729203566?text=Merhaba%20GLOBAL%20TV%2C%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener">BİZE ULAŞIN</a><a class="panel-btn mobile-top-extra" href="#sss">S.S.S</a><a class="trial-nav-btn" href="#" data-trial-modal-open>ÜCRETSİZ DENE</a>
 </div></nav>
 
 <main>
@@ -1846,7 +1903,7 @@ img{max-width:100%}
       <div class="actions">
         <a class="btn primary gold-main-btn" href="#paketler">PAKETLERİ KEŞFET <span>›</span></a>
         <a class="btn gold-outline-btn" href="https://wa.me/447729203566?text=Merhaba%20GLOBAL%20TV%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener">İLETİŞİME GEÇ <span>›</span></a>
-        <a class="btn mobile-trial-btn" href="https://wa.me/447729203566?text=Merhaba%20GLOBAL%20TV%2C%20%C3%BCcretsiz%20deneme%20talep%20etmek%20istiyorum." target="_blank" rel="noopener">ÜCRETSİZ DENE <span>›</span></a>
+        <a class="btn mobile-trial-btn" href="#" data-trial-modal-open>ÜCRETSİZ DENE <span>›</span></a>
       </div>
     </div>
 
@@ -2374,6 +2431,26 @@ img{max-width:100%}
 </footer>
 
 
+<!-- ÜCRETSİZ DENE BİLGİLENDİRME MODALI -->
+<div class="trial-modal" id="trialInfoModal" aria-hidden="true">
+  <div class="trial-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="trialModalTitle">
+    <div class="trial-modal__icon" aria-hidden="true">🔒</div>
+    <h2 id="trialModalTitle">Ücretsiz Deneme Hakkında</h2>
+    <p>
+      Test hesaplarımız güvenlik amacıyla kapalıdır.
+      Ancak gönül rahatlığıyla satın alabilirsiniz.
+      Herhangi bir sorun yaşamanız durumunda
+      <strong>7 Gün İçinde İade Hakkınız Bulunmaktadır. ✅</strong>
+    </p>
+    <p class="trial-modal__thanks">Anlayışınız için teşekkür ederiz. 🙏</p>
+    <div class="trial-modal__actions">
+      <a class="trial-modal__contact" href="https://wa.me/447729203566?text=Merhaba%20GLOBAL%20TV%2C%20paketler%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener">İLETİŞİME GEÇ</a>
+      <button class="trial-modal__close" type="button" data-trial-modal-close>KAPAT</button>
+    </div>
+  </div>
+</div>
+
+
 <script>
 const common=["1 Kullanıcı","7/24 Canlı Teknik Destek","Anında Aktivasyon","Kullanıcı Kontrol Paneli","En Güncel İçerik Arşivi","SD, HD, FHD, 4K Yayınlar","Geniş İçerik Seçenekleri","Çoklu Cihaz Desteği"];
 const domestic=[
@@ -2411,4 +2488,31 @@ render(domestic,false);
 domesticBtn.onclick=()=>{domesticBtn.classList.add("active");abroadBtn.classList.remove("active");render(domestic,false)}
 abroadBtn.onclick=()=>{abroadBtn.classList.add("active");domesticBtn.classList.remove("active");render(abroad,true)}
 </script>
+
+<script>
+(function(){
+  const modal=document.getElementById("trialInfoModal");
+  if(!modal) return;
+  const openButtons=document.querySelectorAll("[data-trial-modal-open]");
+  const closeButton=modal.querySelector("[data-trial-modal-close]");
+
+  function openTrialModal(e){
+    if(e) e.preventDefault();
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden","false");
+    document.body.classList.add("trial-modal-open");
+    setTimeout(()=>{ if(closeButton) closeButton.focus(); },50);
+  }
+
+  function closeTrialModal(){
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden","true");
+    document.body.classList.remove("trial-modal-open");
+  }
+
+  openButtons.forEach(btn=>btn.addEventListener("click",openTrialModal));
+  if(closeButton) closeButton.addEventListener("click",closeTrialModal);
+})();
+</script>
+
 </body></html>
