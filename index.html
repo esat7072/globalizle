@@ -2457,19 +2457,14 @@ const domestic=[
 ["1 AYLIK PAKET","600 ₺"],["3 AYLIK PAKET","950 ₺"],["6 AYLIK PAKET","1.300 ₺"],["12 AYLIK PAKET","2.000 ₺"]
 ];
 const abroad=[
-["3 AYLIK PREMIUM","40 €"],["6 AYLIK PREMIUM","60 €"],["12 AYLIK VIP","70 €"],["12 AYLIK PREMIUM","90 €"]
+["3 AYLIK PREMIUM","40 €"],["6 AYLIK PREMIUM","60 €"],["12 AYLIK PREMIUM","90 €"]
 ];
 const cards=document.getElementById("cards");
 function render(data, isAbroad=false){
  cards.innerHTML=data.map((p,i)=>{
-   const isVIP = isAbroad && p[0]==="12 AYLIK VIP";
    const isTopPremium = isAbroad && p[0]==="12 AYLIK PREMIUM";
    let cls = `card ${isAbroad ? "abroad" : "domestic"}`;
    let tag = "";
-   if(isVIP){
-      cls += " vip-soft";
-      tag = `<span class="tag">VIP</span>`;
-   }
    if(isTopPremium){
       cls += " premium-gold featured";
       tag = `<span class="tag">⭐ EN POPÜLER PREMIUM</span>`;
