@@ -859,14 +859,7 @@ img{max-width:100%}
 /* v21 — eski site korunarak yeni premium ana ekran */
 :root{--hero-gold:#f0bd3f;--hero-gold2:#9e6b0d}
 
-.trial-nav-btn{
-  display:inline-flex;align-items:center;justify-content:center;
-  min-height:46px;padding:0 17px;margin-left:4px;
-  border:1px solid #f0bd3f;border-radius:14px;
-  background:linear-gradient(180deg,#f8d66b,#d99e1f);
-  color:#090a0c;font-size:12px;font-weight:900;
-  box-shadow:0 0 22px rgba(238,185,51,.18);
-}
+
 .trial-nav-btn:hover{filter:brightness(1.06);transform:translateY(-2px)}
 .brand img{background:#030507;border:1px solid rgba(240,189,63,.20)}
 
@@ -1027,7 +1020,7 @@ img{max-width:100%}
 
 @media(max-width:1000px){
   .links{gap:16px}
-  .trial-nav-btn{padding:0 12px}
+  
   .hero-premium{grid-template-columns:1fr 1fr}
   .hero-globe{height:510px}
   .hero-globe img{height:500px}
@@ -1035,7 +1028,7 @@ img{max-width:100%}
   .hero-featurebar>div:nth-child(3){border-right:0}
 }
 @media(max-width:760px){
-  .trial-nav-btn{font-size:10px;min-height:40px}
+  
   .hero-shell{padding-top:12px}
   .hero-premium{
     grid-template-columns:1fr;
@@ -1079,7 +1072,7 @@ img{max-width:100%}
   .brand{font-size:16px}
   .brand img{width:46px;height:46px}
   .panel-btn{font-size:10px;padding:10px 9px}
-  .trial-nav-btn{font-size:9px;padding:0 9px}
+  
   .hero-premium h1{font-size:51px}
   .hero-premium .actions{grid-template-columns:1fr}
   .hero-globe{height:330px}
@@ -1134,13 +1127,7 @@ img{max-width:100%}
     border-radius:11px!important;
     white-space:nowrap!important;
   }
-  .trial-nav-btn{
-    min-height:40px!important;
-    padding:0 10px!important;
-    font-size:9px!important;
-    border-radius:11px!important;
-    white-space:nowrap!important;
-  }
+  
 
   /* hero tek parça, küre arkada sağ-alt */
   .hero-shell{
@@ -1306,11 +1293,7 @@ img{max-width:100%}
   .wrap{width:min(100% - 22px,1180px)!important}
   .nav{gap:6px!important}
   .brand img{width:46px!important;height:46px!important}
-  .panel-btn,.trial-nav-btn{
-    font-size:8.5px!important;
-    padding:0 8px!important;
-    min-height:38px!important;
-  }
+  .panel-btn,
 
   .hero-premium{
     min-height:560px!important;
@@ -1560,15 +1543,11 @@ img{max-width:100%}
 
 
 /* FINAL MOBILE FIX — hero butonları + ücretsiz deneme konumu */
-.mobile-trial-btn{
-  display:none;
-}
+
 
 @media(max-width:760px){
   /* Ücretsiz Dene mobilde üst bardan kalkar */
-  .trial-nav-btn{
-    display:none!important;
-  }
+  
 
   /* Müşteri paneli sağda tek başına daha dengeli kalsın */
   .panel-btn{
@@ -1621,13 +1600,7 @@ img{max-width:100%}
   }
 
   /* Mobil Ücretsiz Dene, İletişime Geç'in altında */
-  .mobile-trial-btn{
-    display:flex!important;
-    background:linear-gradient(180deg,#f8d66b,#d99e1f)!important;
-    border:1px solid #f0bd3f!important;
-    color:#090a0c!important;
-    box-shadow:0 0 22px rgba(238,185,51,.16)!important;
-  }
+  
   .mobile-trial-btn span{
     color:#111!important;
   }
@@ -1833,7 +1806,7 @@ img{max-width:100%}
 <nav><div class="wrap nav">
 <a class="brand" href="#"><img src="assets/global-iptv-logo-gold-clean.png" alt="GLOBAL TV"><span>GLOBAL TV</span></a>
 <div class="links"><a href="#">ANA SAYFA</a><a href="#paketler">PAKETLER</a><a href="#ozellikler">ÖZELLİKLER</a><a href="#sss">S.S.S</a><a href="#iletisim">İLETİŞİM</a></div>
-<a class="panel-btn" href="https://musteripaneli.xyz/index.php?page=login" target="_blank" rel="noopener">MÜŞTERİ PANELİ</a><a class="panel-btn mobile-top-extra" href="https://wa.me/447729203566?text=Merhaba%20GLOBAL%20TV%2C%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener">BİZE ULAŞIN</a><a class="panel-btn mobile-top-extra" href="#sss">S.S.S</a><a class="trial-nav-btn" href="https://wa.me/447729203566?text=Merhaba%20GLOBAL%20TV%2C%20%C3%BCcretsiz%20deneme%20talep%20etmek%20istiyorum." target="_blank" rel="noopener">ÜCRETSİZ DENE</a>
+<a class="panel-btn" href="https://musteripaneli.xyz/index.php?page=login" target="_blank" rel="noopener">MÜŞTERİ PANELİ</a><a class="panel-btn mobile-top-extra" href="https://wa.me/447729203566?text=Merhaba%20GLOBAL%20TV%2C%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener">BİZE ULAŞIN</a><a class="panel-btn mobile-top-extra" href="#sss">S.S.S</a>
 </div></nav>
 
 <main>
@@ -1848,7 +1821,7 @@ img{max-width:100%}
       <div class="actions">
         <a class="btn primary gold-main-btn" href="#paketler">PAKETLERİ KEŞFET <span>›</span></a>
         <a class="btn gold-outline-btn" href="https://wa.me/447729203566?text=Merhaba%20GLOBAL%20TV%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener">İLETİŞİME GEÇ <span>›</span></a>
-        <a class="btn mobile-trial-btn" href="https://wa.me/447729203566?text=Merhaba%20GLOBAL%20TV%2C%20%C3%BCcretsiz%20deneme%20talep%20etmek%20istiyorum." target="_blank" rel="noopener">ÜCRETSİZ DENE <span>›</span></a>
+        
       </div>
     </div>
 
