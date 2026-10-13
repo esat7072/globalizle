@@ -1,0 +1,1864 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>GLOBAL TV | En İyi Hizmetin Adresi</title>
+<meta content="GLOBAL TV ile canlı TV, spor, film ve dizi içeriklerine kesintisiz erişim sağlayın." name="description"/>
+<link href="assets/favicon.png" rel="icon" type="image/png"/>
+<style>
+    :root{
+      --bg:#030918;
+      --bg-2:#07122a;
+      --panel:rgba(8,16,38,.66);
+      --panel-2:rgba(8,18,46,.9);
+      --line:rgba(76,155,255,.28);
+      --line-strong:rgba(77,169,255,.55);
+      --text:#f4f8ff;
+      --muted:#a8bad8;
+      --soft:#8ea6ca;
+      --blue:#20a7ff;
+      --blue-2:#2e5bff;
+      --glow:0 0 0 1px rgba(76,155,255,.22), 0 0 22px rgba(49,134,255,.18), inset 0 0 24px rgba(39,122,255,.08);
+      --radius:26px;
+      --max:1200px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter, Arial, Helvetica, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 20% -10%, rgba(31,111,255,.18), transparent 28%),
+        radial-gradient(circle at 90% 18%, rgba(31,111,255,.13), transparent 20%),
+        linear-gradient(180deg, #030814, #030916 42%, #040b18 100%);
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{width:min(var(--max), calc(100% - 40px)); margin-inline:auto}
+
+    .page-shell{
+      position:relative;
+      min-height:100vh;
+      overflow:hidden;
+      isolation:isolate;
+    }
+
+    .glow-orb,.glow-orb-2{
+      position:absolute;
+      border-radius:50%;
+      filter:blur(28px);
+      opacity:.28;
+      z-index:-1;
+      pointer-events:none;
+    }
+    .glow-orb{width:260px;height:260px;left:-80px;top:140px;background:radial-gradient(circle,#1ea7ff,transparent 72%)}
+    .glow-orb-2{width:340px;height:340px;right:-120px;top:420px;background:radial-gradient(circle,#1a59ff,transparent 74%)}
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      padding:18px 0 0;
+      backdrop-filter:saturate(1.15);
+    }
+    .nav-wrap{
+      display:flex;
+      align-items:center;
+      gap:26px;
+      padding:16px 24px;
+      border:1px solid rgba(84,153,255,.34);
+      border-radius:999px;
+      background:linear-gradient(180deg, rgba(4,12,31,.86), rgba(4,11,28,.72));
+      box-shadow:var(--glow);
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:max-content;
+    }
+    .brand-logo{
+      width:88px;
+      height:88px;
+      border-radius:50%;
+      position:relative;
+      display:grid;
+      place-items:center;
+      background:radial-gradient(circle at 50% 50%, rgba(19,28,62,.64), rgba(4,9,22,.98) 72%);
+      border:1px solid rgba(129,195,255,.5);
+      box-shadow:0 0 22px rgba(34,141,255,.26), inset 0 0 22px rgba(44,140,255,.10);
+      overflow:hidden;
+      flex:0 0 auto;
+    }
+    .brand-logo::before,
+    .brand-logo::after{
+      content:"";
+      position:absolute;
+      inset:9px;
+      border-radius:50%;
+      border:2px solid rgba(210,235,255,.92);
+      opacity:.95;
+    }
+    .brand-logo::after{
+      inset:20px -2px;
+      border-width:1px;
+      opacity:.55;
+    }
+    .brand-logo .v-line,
+    .brand-logo .h-line,
+    .brand-logo .h-line-2{
+      position:absolute;
+      background:rgba(221,241,255,.72);
+      box-shadow:0 0 10px rgba(113,201,255,.35);
+    }
+    .brand-logo .v-line{width:1px;height:70px;left:50%;top:9px;transform:translateX(-50%)}
+    .brand-logo .h-line{height:1px;width:68px;top:31px;left:10px;border-radius:999px}
+    .brand-logo .h-line-2{height:1px;width:68px;bottom:26px;left:10px;border-radius:999px;opacity:.7}
+    .brand-logo .logo-text{
+      position:relative;
+      z-index:2;
+      text-align:center;
+      font-weight:900;
+      letter-spacing:.03em;
+      line-height:.86;
+      text-shadow:0 0 14px rgba(115,195,255,.18);
+    }
+    .brand-logo .logo-text span:first-child{display:block;font-size:18px}
+    .brand-logo .logo-text span:last-child{display:block;font-size:16px;margin-top:4px}
+
+    nav{
+      display:flex;
+      align-items:center;
+      gap:26px;
+      flex:1;
+      min-width:0;
+    }
+    .nav-links{display:flex;align-items:center;gap:26px;margin-left:12px;flex-wrap:wrap}
+    .nav-links a{color:#dbe9ff;opacity:.92;font-weight:500;position:relative;padding:6px 0}
+    .nav-links a.active,
+    .nav-links a:hover{color:#76d9ff}
+    .nav-links a.active::after,
+    .nav-links a:hover::after{
+      content:"";
+      position:absolute;
+      left:0;right:0;bottom:-9px;
+      height:3px;
+      border-radius:999px;
+      background:linear-gradient(90deg, #12b5ff, #3274ff);
+      box-shadow:0 0 14px rgba(50,116,255,.8);
+    }
+    .nav-actions{display:flex;align-items:center;gap:12px;margin-left:auto}
+    .btn-outline,
+    .btn-primary,
+    .pill{
+      border-radius:999px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      font-weight:800;
+      transition:.22s ease;
+      white-space:nowrap;
+      cursor:pointer;
+      border:1px solid transparent;
+    }
+    .btn-outline{
+      min-height:58px;
+      padding:0 26px;
+      border-color:rgba(93,163,255,.62);
+      background:linear-gradient(180deg, rgba(8,20,52,.88), rgba(6,17,42,.72));
+      box-shadow:inset 0 0 18px rgba(56,123,255,.08), 0 0 18px rgba(39,103,255,.14);
+    }
+    .btn-outline:hover{transform:translateY(-1px); box-shadow:0 0 22px rgba(41,118,255,.22), inset 0 0 18px rgba(56,123,255,.10)}
+    .btn-primary{
+      min-height:66px;
+      padding:0 30px;
+      border-color:rgba(94,178,255,.85);
+      background:linear-gradient(90deg, #1cb8ff, #2f54ff);
+      box-shadow:0 0 32px rgba(36,135,255,.30), inset 0 0 18px rgba(255,255,255,.16);
+    }
+    .btn-primary:hover{transform:translateY(-2px); box-shadow:0 0 40px rgba(36,135,255,.42)}
+    .btn-ghost{
+      min-height:66px;
+      padding:0 28px;
+      border:1px solid rgba(95,168,255,.52);
+      background:linear-gradient(180deg, rgba(6,15,38,.72), rgba(6,14,36,.84));
+      box-shadow:inset 0 0 18px rgba(56,123,255,.06), 0 0 16px rgba(39,103,255,.08);
+      border-radius:999px;
+      display:inline-flex;align-items:center;gap:12px;font-weight:800
+    }
+    .btn-ghost:hover{transform:translateY(-2px);border-color:rgba(103,182,255,.78)}
+    .nav-btn-icon{width:18px;height:18px;display:inline-block}
+
+    .mobile-toggle{
+      display:none;
+      margin-left:auto;
+      width:52px;height:52px;border-radius:16px;
+      border:1px solid rgba(93,163,255,.5);
+      background:linear-gradient(180deg, rgba(8,20,52,.88), rgba(6,17,42,.72));
+      color:#fff;
+      box-shadow:inset 0 0 18px rgba(56,123,255,.08), 0 0 18px rgba(39,103,255,.14);
+    }
+    .mobile-toggle span{display:block;width:22px;height:2px;background:#d7eaff;margin:5px auto;border-radius:999px}
+
+    .hero{
+      position:relative;
+      isolation:isolate;
+      padding:72px 0 120px;
+      min-height:calc(100vh - 118px);
+      display:flex;
+      align-items:center;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";position:absolute;inset:0;
+      background:url('assets/hero-bg.webp') no-repeat right top/cover;
+      opacity:.96;z-index:-2;
+    }
+    .hero::after{
+      content:"";position:absolute;inset:0;
+      background:linear-gradient(90deg, rgba(2,8,23,.94) 0%, rgba(2,8,23,.90) 22%, rgba(2,8,23,.62) 48%, rgba(2,8,23,.14) 72%, rgba(2,8,23,.30) 100%),linear-gradient(180deg, rgba(2,8,23,.28), rgba(2,8,23,.34) 42%, rgba(2,8,23,.88) 92%, rgba(2,8,23,1));
+      z-index:-1;pointer-events:none;
+    }
+    .hero-grid{
+      width:min(660px, 100%);
+      padding:26px 0 0;
+    }
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      padding:13px 22px;
+      border:1px solid rgba(89,165,255,.62);
+      border-radius:999px;
+      background:rgba(5,15,38,.42);
+      box-shadow:inset 0 0 16px rgba(39,122,255,.10), 0 0 22px rgba(39,122,255,.12);
+      color:#f1f8ff;
+      font-weight:700;
+      letter-spacing:.01em;
+      margin-bottom:28px;
+    }
+    .eyebrow .badge-icon{width:20px;height:20px}
+    .hero h1{
+      font-size:clamp(64px, 9vw, 132px);
+      line-height:.92;
+      margin:0;
+      letter-spacing:-.04em;
+      text-transform:uppercase;
+      color:#fcfdff;
+      text-shadow:0 0 26px rgba(40,130,255,.28);
+    }
+    .hero .title-line{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+    .play-o{
+      position:relative;
+      display:inline-grid;
+      place-items:center;
+      width:.84em;height:.84em;
+      border:3px solid rgba(255,255,255,.94);
+      border-radius:50%;
+      box-shadow:0 0 18px rgba(49,134,255,.30), inset 0 0 12px rgba(30,167,255,.20);
+      vertical-align:middle;
+      transform:translateY(.05em);
+      margin:0 .01em;
+    }
+    .play-o::before{
+      content:"";
+      width:0;height:0;
+      border-top:.13em solid transparent;
+      border-bottom:.13em solid transparent;
+      border-left:.2em solid rgba(255,255,255,.98);
+      margin-left:.05em;
+      filter:drop-shadow(0 0 8px rgba(30,167,255,.55));
+    }
+    .hero-sub{
+      font-size:clamp(30px, 4vw, 66px);
+      line-height:1.05;
+      margin:14px 0 0;
+      color:#eef5ff;
+      font-weight:300;
+      letter-spacing:.01em;
+    }
+    .hero-line{
+      width:72px;height:6px;border-radius:999px;
+      background:linear-gradient(90deg,#1cc1ff,#2f5dff);
+      box-shadow:0 0 16px rgba(39,122,255,.5);
+      margin:24px 0 22px;
+    }
+    .hero p{
+      max-width:610px;
+      color:#dce8fa;
+      font-size:clamp(18px, 2vw, 20px);
+      line-height:1.6;
+      margin:0;
+    }
+    .hero p strong{color:#57c4ff}
+    .hero-actions{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:34px}
+    .hero-card-row{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0,1fr));
+      gap:18px;
+      margin-top:68px;
+      max-width:1120px;
+    }
+    .hero-card{
+      min-height:214px;
+      border:1px solid rgba(80,151,255,.28);
+      border-radius:28px;
+      background:linear-gradient(180deg, rgba(6,16,42,.74), rgba(5,12,30,.80));
+      box-shadow:var(--glow);
+      padding:28px 24px 24px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      backdrop-filter:blur(4px);
+    }
+    .hero-card .icon-box{
+      width:76px;height:76px;border-radius:50%;display:grid;place-items:center;
+      border:1px solid rgba(109,183,255,.55);
+      box-shadow:0 0 18px rgba(42,123,255,.18), inset 0 0 12px rgba(42,123,255,.12);
+      color:#eff7ff;
+    }
+    .hero-card h3{margin:18px 0 8px;font-size:18px;line-height:1.2}
+    .hero-card p{margin:0;color:var(--soft);font-size:14px;line-height:1.5}
+    .hero-card .accent{width:44px;height:5px;border-radius:999px;background:linear-gradient(90deg,#14b7ff,#3271ff);box-shadow:0 0 10px rgba(50,113,255,.55);margin-top:18px}
+
+    .scroll-indicator{display:flex;justify-content:center;margin-top:18px}
+    .mouse{
+      width:36px;height:62px;border-radius:22px;border:2px solid rgba(177,215,255,.72);position:relative;
+      box-shadow:0 0 18px rgba(41,118,255,.14), inset 0 0 12px rgba(39,122,255,.10)
+    }
+    .mouse::before{content:"";position:absolute;left:50%;top:11px;transform:translateX(-50%);width:6px;height:12px;border-radius:999px;background:#dff1ff;animation:scroll 1.7s infinite}
+    .mouse::after{content:"⌄";position:absolute;left:50%;bottom:-28px;transform:translateX(-50%);font-size:24px;color:#d7ebff}
+    @keyframes scroll{0%{opacity:0;transform:translateX(-50%) translateY(0)}40%{opacity:1}100%{opacity:0;transform:translateX(-50%) translateY(18px)}}
+
+    .section{
+      padding:90px 0;
+      position:relative;
+    }
+    .section-title{
+      text-align:center;
+      margin-bottom:42px;
+    }
+    .section-title small{
+      display:inline-block;
+      color:#8acfff;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      margin-bottom:12px;
+      font-weight:700;
+    }
+    .section-title h2{margin:0;font-size:clamp(34px,4vw,52px)}
+    .section-title p{margin:14px auto 0;max-width:760px;color:var(--muted);font-size:18px;line-height:1.7}
+
+    .glass-panel{background:linear-gradient(180deg, rgba(8,16,38,.66), rgba(6,12,30,.8)); border:1px solid rgba(80,151,255,.28); box-shadow:var(--glow); border-radius:30px}
+
+    .pricing-switch{
+      display:flex;gap:10px;justify-content:center;margin-bottom:28px;flex-wrap:wrap
+    }
+    .pricing-switch button{
+      padding:14px 20px;border-radius:999px;border:1px solid rgba(87,162,255,.34);background:rgba(8,18,46,.65);color:#dfeeff;font-weight:800;cursor:pointer;transition:.2s ease
+    }
+    .pricing-switch button.active{background:linear-gradient(90deg,#18b3ff,#2d58ff);box-shadow:0 0 24px rgba(46,93,255,.24);border-color:rgba(110,184,255,.85)}
+    .pricing-grid{display:grid;grid-template-columns:repeat(4, minmax(0,1fr)); gap:18px}
+    .pricing-card{
+      padding:26px;
+      display:flex;flex-direction:column;
+      min-height:100%;
+      position:relative;
+      overflow:hidden;
+    }
+    .pricing-card.featured::before{
+      content:"ÖNE ÇIKAN";
+      position:absolute;
+      top:16px;right:16px;
+      padding:7px 12px;
+      border-radius:999px;
+      font-size:11px;
+      font-weight:900;
+      background:linear-gradient(90deg,#16b5ff,#3456ff);
+      box-shadow:0 0 18px rgba(46,93,255,.24);
+    }
+    .pricing-card .plan{color:#9bd4ff;font-size:14px;letter-spacing:.14em;text-transform:uppercase;font-weight:800}
+    .pricing-card h3{margin:10px 0 0;font-size:24px}
+    .pricing-card .price{font-size:44px;font-weight:900;line-height:1;margin:18px 0 6px}
+    .pricing-card .price small{font-size:17px;color:#99c1ea;font-weight:600}
+    .pricing-card ul{list-style:none;padding:0;margin:20px 0 24px;color:#dbe7fb}
+    .pricing-card li{padding:10px 0;border-bottom:1px solid rgba(82,152,255,.14)}
+    .pricing-card li:last-child{border-bottom:0}
+    .pricing-card .buy{margin-top:auto}
+    .pricing-card.hidden{display:none}
+
+    .feature-grid{display:grid;grid-template-columns:repeat(3, minmax(0,1fr)); gap:18px}
+    .feature-item{padding:28px}
+    .feature-item .feature-icon{width:68px;height:68px;border-radius:22px;display:grid;place-items:center;background:linear-gradient(180deg, rgba(17,121,255,.20), rgba(20,183,255,.10));border:1px solid rgba(103,182,255,.38);box-shadow:inset 0 0 12px rgba(39,122,255,.10)}
+    .feature-item h3{margin:18px 0 8px;font-size:22px}
+    .feature-item p{margin:0;color:var(--muted);line-height:1.6}
+
+    .device-layout{display:grid;grid-template-columns:1.1fr .9fr; gap:24px; align-items:stretch}
+    .device-copy{padding:34px}
+    .chip-list{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+    .chip{padding:12px 16px;border-radius:999px;border:1px solid rgba(98,170,255,.28);background:rgba(12,22,54,.48);color:#eaf4ff;font-weight:700}
+    .contact-card{padding:34px;display:flex;flex-direction:column;justify-content:space-between}
+    .contact-card h3{margin:0 0 12px;font-size:28px}
+    .contact-card p{margin:0;color:var(--muted);line-height:1.7}
+
+    .faq{display:grid;gap:14px;max-width:980px;margin:0 auto}
+    .faq-item{padding:0 26px}
+    .faq-item summary{list-style:none;cursor:pointer;padding:24px 0;font-size:19px;font-weight:800;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .faq-item summary::-webkit-details-marker{display:none}
+    .faq-item p{margin:0;padding:0 0 24px;color:var(--muted);line-height:1.7}
+    .faq-item summary span{font-size:28px;color:#89ceff}
+
+    .cta-section{padding:0 0 90px}
+    .cta-box{padding:38px;display:grid;grid-template-columns:1.3fr .7fr;gap:24px;align-items:center}
+    .cta-box h2{margin:0 0 10px;font-size:clamp(30px,4vw,44px)}
+    .cta-box p{margin:0;color:var(--muted);line-height:1.7;font-size:18px}
+    .cta-actions{display:flex;justify-content:flex-end;gap:14px;flex-wrap:wrap}
+
+    footer{padding:0 0 46px;color:#9ab2d0}
+    .footer-row{display:flex;justify-content:space-between;gap:20px;align-items:center;flex-wrap:wrap;padding-top:26px;border-top:1px solid rgba(85,152,255,.18)}
+
+
+    /* Final polish */
+    .title-line{display:flex!important;align-items:baseline;gap:.13em;flex-wrap:nowrap!important;letter-spacing:-.035em!important}
+    .global-word{background:linear-gradient(180deg,#fff 0%,#d8ecff 46%,#8ec9ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 16px rgba(39,143,255,.22))}
+    .tv-word{font-size:.58em;letter-spacing:.04em;color:#6fd2ff;text-shadow:0 0 18px rgba(42,148,255,.5);position:relative;top:-.08em}
+    .mobile-iptv-info{display:none}
+    .social-rail{position:fixed;left:18px;top:50%;transform:translateY(-50%);z-index:70;display:flex;flex-direction:column;gap:12px}
+    .social-fixed{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:900;letter-spacing:.03em;color:#fff;border:1px solid rgba(112,186,255,.55);background:rgba(6,16,42,.86);box-shadow:0 0 18px rgba(35,124,255,.18),inset 0 0 14px rgba(35,124,255,.10);backdrop-filter:blur(8px);transition:.2s ease}
+    .social-fixed:hover{transform:translateX(3px);border-color:#79d3ff;box-shadow:0 0 24px rgba(35,124,255,.32)}
+    .social-fixed.whatsapp{border-color:rgba(64,220,142,.65)}
+    .social-fixed.telegram{border-color:rgba(70,176,255,.7)}
+    .social-fixed.twitter{border-color:rgba(210,225,255,.55)}
+    @media(max-width:960px){
+      .nav-actions{gap:10px}
+      .whatsapp-top{display:inline-flex}
+      .mobile-iptv-info{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:24px}
+      .mobile-iptv-info span{padding:11px 12px;border:1px solid rgba(93,163,255,.32);border-radius:14px;background:rgba(5,14,36,.62);color:#ddecff;font-size:12px;font-weight:800;letter-spacing:.03em;text-align:center;box-shadow:inset 0 0 12px rgba(39,122,255,.08)}
+    }
+    @media(max-width:700px){
+      .title-line{justify-content:flex-start;gap:.16em!important;font-size:clamp(48px,15vw,72px)!important}
+      .tv-word{font-size:.5em;top:-.12em}
+      .hero-sub{font-weight:500;letter-spacing:.01em}
+      .eyebrow{font-size:12px}
+      .hero-card-row{margin-top:38px}
+      .social-rail{left:10px;top:auto;bottom:18px;transform:none;flex-direction:row}
+      .social-fixed{width:44px;height:44px}
+      .nav-actions .btn-outline{flex:1;min-width:0}
+    }
+    @media (max-width:1180px){
+      .hero-card-row,.pricing-grid{grid-template-columns:repeat(2, minmax(0,1fr))}
+      .feature-grid{grid-template-columns:repeat(2, minmax(0,1fr))}
+    }
+    @media (max-width:960px){
+      header{padding-top:14px}
+      .nav-wrap{padding:14px 16px;border-radius:28px;align-items:flex-start;flex-wrap:wrap}
+      .brand{gap:10px}
+      .brand-logo{width:76px;height:76px}
+      .brand-logo .logo-text span:first-child{font-size:16px}
+      .brand-logo .logo-text span:last-child{font-size:14px}
+      nav{display:none;width:100%;flex-direction:column;align-items:flex-start;padding-top:8px}
+      .nav-wrap.open nav{display:flex}
+      .nav-links{margin:0;width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+      .nav-links a.active::after,.nav-links a:hover::after{bottom:-4px}
+      .nav-actions{width:100%;margin:8px 0 0;flex-wrap:wrap}
+      .mobile-toggle{display:block}
+      .hero{padding:40px 0 90px;min-height:auto}
+      .hero::before{background-position:70% top}
+      .hero-grid{width:100%}
+      .hero h1{font-size:clamp(52px, 14vw, 86px)}
+      .hero-sub{font-size:clamp(26px, 7vw, 48px)}
+      .device-layout,.cta-box{grid-template-columns:1fr}
+      .cta-actions{justify-content:flex-start}
+    }
+    @media (max-width:700px){
+      .container{width:min(100% - 26px, var(--max))}
+      .hero::before{background-position:76% 20px;background-size:cover}
+      .hero::after{background:linear-gradient(180deg, rgba(2,8,23,.50), rgba(2,8,23,.56) 38%, rgba(2,8,23,.90) 86%, rgba(2,8,23,1)), linear-gradient(90deg, rgba(2,8,23,.82), rgba(2,8,23,.28) 72%)}
+      .nav-wrap{padding:12px 14px}
+      .brand-logo{width:66px;height:66px}
+      .brand-logo .logo-text span:first-child{font-size:14px}
+      .brand-logo .logo-text span:last-child{font-size:12px}
+      .btn-outline{min-height:52px;padding:0 16px;font-size:14px}
+      .hero-grid{padding-top:8px}
+      .eyebrow{padding:12px 16px;font-size:13px;gap:10px;margin-bottom:20px}
+      .hero p{font-size:17px;max-width:560px}
+      .hero-actions{gap:12px}
+      .btn-primary,.btn-ghost{width:100%;justify-content:center;min-height:58px;padding:0 20px}
+      .hero-card-row,.pricing-grid,.feature-grid{grid-template-columns:1fr}
+      .hero-card{min-height:unset}
+      .section{padding:74px 0}
+      .pricing-card .price{font-size:38px}
+      .device-copy,.contact-card,.cta-box,.pricing-card,.feature-item{padding:24px}
+      .faq-item{padding:0 18px}
+      .faq-item summary{font-size:17px;padding:20px 0}
+      .scroll-indicator{display:none}
+    }
+  
+
+/* ===== Kullanıcı notları - final düzenlemeler ===== */
+.hero-brand-title{
+  display:flex;align-items:center;gap:18px;flex-wrap:nowrap;
+  margin:0!important;line-height:.88!important;letter-spacing:-.055em!important;
+  font-size:clamp(62px,8.2vw,118px)!important;font-weight:950;
+  filter:drop-shadow(0 0 22px rgba(51,135,255,.22));
+}
+.hero-brand-title .global-word{
+  display:inline-block;
+  background:linear-gradient(180deg,#ffffff 0%,#eef7ff 44%,#9ccaff 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  text-shadow:none;
+}
+.hero-brand-title .tv-mark{
+  display:inline-grid;place-items:center;
+  padding:.10em .20em .13em;
+  border:2px solid rgba(118,202,255,.92);
+  border-radius:.20em;
+  color:#f7fbff;
+  font-size:.50em;
+  line-height:1;
+  letter-spacing:.02em;
+  background:linear-gradient(145deg,rgba(24,174,255,.28),rgba(45,75,255,.42));
+  box-shadow:0 0 0 1px rgba(255,255,255,.08) inset,0 0 26px rgba(35,132,255,.34);
+  transform:translateY(.04em);
+}
+.nav-actions{gap:10px}
+.nav-actions .btn-outline{min-height:54px;padding:0 20px;font-size:13px}
+.nav-whatsapp-btn{border-color:rgba(52,211,153,.55)!important;background:linear-gradient(180deg,rgba(8,52,49,.78),rgba(6,28,35,.78))!important;box-shadow:inset 0 0 18px rgba(34,197,94,.08),0 0 18px rgba(34,197,94,.10)!important}
+.nav-whatsapp-btn:hover{border-color:rgba(74,222,128,.85)!important;box-shadow:0 0 22px rgba(34,197,94,.18)!important}
+
+.mobile-iptv-info{display:none}
+
+.social-float{
+  position:fixed;left:18px;top:50%;transform:translateY(-50%);z-index:70;
+  display:flex;flex-direction:column;gap:10px;
+}
+.social-float-btn{
+  width:52px;height:52px;border-radius:17px;display:flex;align-items:center;justify-content:center;
+  color:#eff8ff;border:1px solid rgba(101,174,255,.42);
+  background:linear-gradient(180deg,rgba(8,20,52,.92),rgba(5,13,35,.94));
+  box-shadow:0 0 18px rgba(37,111,255,.15),inset 0 0 18px rgba(51,132,255,.08);
+  position:relative;transition:.2s ease;
+}
+.social-float-btn svg{width:23px;height:23px}
+.social-float-btn span{
+  position:absolute;left:62px;opacity:0;pointer-events:none;transform:translateX(-6px);
+  padding:8px 11px;border-radius:10px;white-space:nowrap;font-size:12px;font-weight:800;
+  background:#08142f;border:1px solid rgba(91,166,255,.32);box-shadow:0 8px 24px rgba(0,0,0,.28);transition:.18s ease;
+}
+.social-float-btn:hover{transform:translateX(3px);border-color:rgba(122,196,255,.78);box-shadow:0 0 25px rgba(37,111,255,.28)}
+.social-float-btn:hover span{opacity:1;transform:none}
+.social-float-btn.telegram{color:#63c7ff}
+.social-float-btn.xbtn{color:#f7fbff}
+.social-float-btn.whatsapp{color:#56e58a}
+
+.pricing-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.pricing-card ul{font-size:14px;line-height:1.35}
+.pricing-card li{position:relative;padding:10px 0 10px 24px}
+.pricing-card li::before{content:"✓";position:absolute;left:0;top:10px;color:#67caff;font-weight:900;text-shadow:0 0 10px rgba(68,166,255,.5)}
+
+@media(max-width:1180px){
+  .pricing-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .nav-links{gap:17px}.nav-actions .btn-outline{padding:0 16px}
+}
+
+@media(max-width:960px){
+  .hero-brand-title{font-size:clamp(48px,13.5vw,82px)!important;gap:12px;letter-spacing:-.045em!important}
+  .nav-actions .btn-outline{flex:1;min-width:190px}
+}
+
+@media(max-width:700px){
+  header{position:relative}
+  .hero{padding-top:28px}
+  .hero-grid{padding-top:0}
+  .eyebrow{font-size:11px;letter-spacing:.08em;padding:10px 13px;background:rgba(4,12,31,.60)}
+  .hero-brand-title{font-size:clamp(47px,15vw,68px)!important;gap:10px;white-space:nowrap;margin-top:4px!important}
+  .hero-brand-title .tv-mark{font-size:.46em;border-radius:.24em;padding:.13em .19em .15em}
+  .hero-sub{font-size:23px!important;font-weight:500;letter-spacing:.01em;margin-top:10px}
+  .hero-line{margin:17px 0 16px;width:58px;height:4px}
+  .hero p{font-size:15px;line-height:1.55;color:#d6e6fb}
+  .mobile-iptv-info{
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:18px;
+  }
+  .mobile-iptv-info>div{
+    min-height:69px;padding:12px 11px;border-radius:16px;
+    border:1px solid rgba(83,160,255,.34);
+    background:linear-gradient(180deg,rgba(8,19,48,.68),rgba(5,14,35,.74));
+    box-shadow:inset 0 0 15px rgba(46,125,255,.06),0 8px 22px rgba(0,0,0,.12);
+  }
+  .mobile-iptv-info strong{display:block;color:#dff4ff;font-size:11px;letter-spacing:.045em;margin-bottom:5px}
+  .mobile-iptv-info span{display:block;color:#8fb0d8;font-size:10px;line-height:1.35}
+  .hero-actions{margin-top:18px}
+  .hero-card-row{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:28px}
+  .hero-card{min-height:154px;padding:17px 14px;border-radius:20px}
+  .hero-card .icon-box{width:46px;height:46px}
+  .hero-card .icon-box svg{width:23px;height:23px}
+  .hero-card h3{font-size:14px;margin:12px 0 5px}
+  .hero-card p{font-size:11px;line-height:1.38;color:#91abd0}
+  .hero-card .accent{width:30px;height:3px;margin-top:12px}
+  .social-float{left:auto;right:12px;top:auto;bottom:14px;transform:none;flex-direction:row;gap:8px}
+  .social-float-btn{width:45px;height:45px;border-radius:15px;background:linear-gradient(180deg,rgba(7,18,44,.96),rgba(4,11,28,.97));backdrop-filter:blur(8px)}
+  .social-float-btn span{display:none}
+  .social-float-btn:hover{transform:translateY(-2px)}
+  .pricing-grid{grid-template-columns:1fr}
+  .pricing-card ul{font-size:13px}
+  .pricing-card li{padding:8px 0 8px 22px}
+  .pricing-card li::before{top:8px}
+}
+
+/* TR / DE language switch */
+.lang-switch{display:flex;align-items:center;gap:6px;padding:5px;border:1px solid rgba(93,163,255,.42);border-radius:999px;background:rgba(5,15,38,.58);box-shadow:inset 0 0 14px rgba(39,122,255,.08)}
+.lang-btn{border:0;background:transparent;color:#a9c3e6;min-width:44px;height:38px;border-radius:999px;font-weight:900;cursor:pointer;letter-spacing:.04em;transition:.2s ease;display:grid;place-items:center;font-size:22px;line-height:1;filter:saturate(.92)}
+.lang-btn.active{color:#fff;background:linear-gradient(90deg,rgba(24,179,255,.24),rgba(45,88,255,.28));box-shadow:0 0 16px rgba(46,93,255,.30),inset 0 0 0 1px rgba(119,196,255,.38);filter:saturate(1.08)}
+@media(max-width:960px){.lang-switch{order:-1}.nav-actions .lang-switch{width:max-content}}
+@media(max-width:700px){.lang-switch{padding:4px}.lang-btn{min-width:40px;height:34px;font-size:20px}}
+
+
+/* Mobile-only refinement V5 — desktop layout intentionally unchanged */
+.mobile-topbar{display:none}
+@media(max-width:700px){
+  /* cleaner mobile header */
+  header{padding-top:10px}
+  .nav-wrap{
+    min-height:78px;
+    padding:9px 11px 9px 12px;
+    border-radius:22px;
+    align-items:center;
+    background:linear-gradient(180deg,rgba(4,12,31,.94),rgba(4,11,28,.90));
+  }
+  .brand-logo{width:60px;height:60px}
+  .mobile-toggle{
+    display:grid;
+    place-items:center;
+    position:relative;
+    width:50px;height:50px;
+    padding:0;
+    border-radius:15px;
+    border:1px solid rgba(96,174,255,.58);
+    background:linear-gradient(180deg,rgba(9,25,62,.94),rgba(5,15,38,.96));
+    box-shadow:0 0 18px rgba(39,122,255,.14),inset 0 0 16px rgba(48,135,255,.09);
+  }
+  .mobile-toggle span{
+    position:absolute;
+    width:21px;height:2px;
+    left:50%;
+    margin:0;
+    transform:translateX(-50%);
+    border-radius:999px;
+    background:#dff2ff;
+    transition:.22s ease;
+    box-shadow:0 0 8px rgba(72,171,255,.28);
+  }
+  .mobile-toggle span:nth-child(1){top:17px}
+  .mobile-toggle span:nth-child(2){top:24px}
+  .mobile-toggle span:nth-child(3){top:31px}
+  .nav-wrap.open .mobile-toggle span:nth-child(1){top:24px;transform:translateX(-50%) rotate(45deg)}
+  .nav-wrap.open .mobile-toggle span:nth-child(2){opacity:0}
+  .nav-wrap.open .mobile-toggle span:nth-child(3){top:24px;transform:translateX(-50%) rotate(-45deg)}
+
+  /* mobile menu: keep customer panel, remove duplicated language/WhatsApp controls */
+  .nav-wrap.open nav{
+    margin-top:8px;
+    padding-top:12px;
+    border-top:1px solid rgba(92,164,255,.16);
+  }
+  .nav-actions .lang-switch,
+  .nav-actions .nav-whatsapp-btn{display:none!important}
+  .nav-actions .nav-panel-btn{min-width:100%;width:100%;justify-content:center}
+
+  /* direct flag language selector + quick contact buttons in free top space */
+  .mobile-topbar{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-top:8px;
+    padding:0 2px;
+  }
+  .mobile-lang-flags{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    flex:0 0 auto;
+  }
+  .mobile-flag-btn{
+    width:42px;height:34px;
+    padding:0;
+    border-radius:9px;
+    overflow:hidden;
+    border:1px solid rgba(102,177,255,.40);
+    background:#06122c;
+    box-shadow:0 0 12px rgba(34,116,255,.10);
+    cursor:pointer;
+    transition:.18s ease;
+  }
+  .mobile-flag-btn.active{
+    border-color:#73cbff;
+    box-shadow:0 0 0 1px rgba(115,203,255,.22),0 0 16px rgba(43,136,255,.28);
+  }
+  .mobile-flag-btn svg{display:block;width:100%;height:100%}
+  .mobile-quick-link{
+    min-height:36px;
+    padding:0 11px;
+    border-radius:10px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
+    font-size:11px;
+    font-weight:850;
+    white-space:nowrap;
+    border:1px solid rgba(95,168,255,.38);
+    background:linear-gradient(180deg,rgba(7,19,48,.92),rgba(4,12,31,.95));
+    color:#eef8ff;
+    box-shadow:inset 0 0 12px rgba(44,128,255,.06);
+  }
+  .mobile-quick-link.whatsapp{border-color:rgba(68,214,137,.55)}
+  .mobile-quick-link.telegram{border-color:rgba(72,176,255,.62)}
+  .mobile-quick-link svg{width:16px;height:16px;flex:0 0 auto}
+  .mobile-topbar .mobile-quick-link{flex:1;min-width:0}
+
+  /* IPTV information: single left-aligned rows instead of a 2-column box grid */
+  .mobile-iptv-info{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:7px;
+    width:min(100%,330px);
+    margin-top:18px;
+  }
+  .mobile-iptv-info>div{
+    width:100%;
+    min-height:0;
+    padding:7px 10px 7px 14px;
+    border:0;
+    border-left:2px solid rgba(67,170,255,.82);
+    border-radius:0 11px 11px 0;
+    background:linear-gradient(90deg,rgba(10,28,66,.55),rgba(7,18,44,.16));
+    box-shadow:none;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    text-align:left;
+  }
+  .mobile-iptv-info>div:nth-child(n+5){display:none}
+  .mobile-iptv-info strong{
+    display:inline;
+    min-width:90px;
+    margin:0;
+    color:#dff4ff;
+    font-size:10px;
+    letter-spacing:.045em;
+    line-height:1.25;
+  }
+  .mobile-iptv-info span{
+    display:inline;
+    color:#96b2d6;
+    font-size:10px;
+    line-height:1.25;
+  }
+
+  /* top controls replace the mobile floating social dock */
+  .social-float{display:none!important}
+}
+
+
+
+/* ===== MOBILE V6 — premium mobile-first refinement; desktop intentionally untouched ===== */
+@media (max-width:700px){
+  :root{--mobile-pad:14px}
+  body{background:#030916}
+  .container{width:calc(100% - 24px)}
+
+  /* mobile header */
+  header{
+    position:sticky!important;
+    top:0;
+    z-index:100;
+    padding:8px 0 6px!important;
+    background:linear-gradient(180deg,rgba(3,9,24,.96) 0%,rgba(3,9,24,.78) 76%,rgba(3,9,24,0) 100%);
+    backdrop-filter:blur(14px);
+  }
+  .nav-wrap{
+    min-height:68px!important;
+    padding:8px 9px 8px 10px!important;
+    border-radius:20px!important;
+    border:1px solid rgba(92,170,255,.34)!important;
+    background:linear-gradient(180deg,rgba(7,20,49,.93),rgba(4,12,31,.93))!important;
+    box-shadow:0 12px 34px rgba(0,0,0,.24),inset 0 0 22px rgba(42,126,255,.07)!important;
+  }
+  .brand-logo{
+    width:52px!important;height:52px!important;
+    border-color:rgba(126,202,255,.66)!important;
+    box-shadow:0 0 18px rgba(34,141,255,.20),inset 0 0 15px rgba(44,140,255,.10)!important;
+  }
+  .brand-logo::before{inset:6px!important;border-width:1.5px!important}
+  .brand-logo::after{inset:15px -1px!important}
+  .brand-logo .v-line{height:42px!important;top:5px!important}
+  .brand-logo .h-line{width:40px!important;left:6px!important;top:19px!important}
+  .brand-logo .h-line-2{width:40px!important;left:6px!important;bottom:16px!important}
+  .brand-logo .logo-text span:first-child{font-size:11px!important}
+  .brand-logo .logo-text span:last-child{font-size:10px!important;margin-top:3px!important}
+
+  .mobile-toggle{
+    width:48px!important;height:48px!important;
+    border-radius:16px!important;
+    border:1px solid rgba(102,181,255,.55)!important;
+    background:radial-gradient(circle at 50% 30%,rgba(40,112,255,.18),rgba(5,15,38,.96) 66%)!important;
+    box-shadow:inset 0 0 18px rgba(48,135,255,.10),0 0 18px rgba(37,118,255,.12)!important;
+  }
+  .mobile-toggle span{width:20px!important;height:2px!important}
+  .mobile-toggle span:nth-child(1){top:16px!important}
+  .mobile-toggle span:nth-child(2){top:23px!important}
+  .mobile-toggle span:nth-child(3){top:30px!important}
+  .nav-wrap.open .mobile-toggle span:nth-child(1),
+  .nav-wrap.open .mobile-toggle span:nth-child(3){top:23px!important}
+
+  /* opened menu becomes a deliberate mobile panel */
+  .nav-wrap.open nav{
+    width:100%!important;
+    margin-top:8px!important;
+    padding:14px 4px 4px!important;
+    border-top:1px solid rgba(92,164,255,.18)!important;
+    gap:14px!important;
+  }
+  .nav-links{
+    width:100%!important;
+    grid-template-columns:1fr 1fr!important;
+    gap:8px!important;
+  }
+  .nav-links a{
+    min-height:44px;
+    display:flex!important;
+    align-items:center;
+    justify-content:center;
+    padding:0 10px!important;
+    border-radius:13px;
+    border:1px solid rgba(85,156,255,.17);
+    background:rgba(8,20,48,.54);
+    color:#dcecff!important;
+    font-size:13px!important;
+    font-weight:800!important;
+  }
+  .nav-links a::after{display:none!important}
+  .nav-links a.active{border-color:rgba(89,179,255,.50);background:linear-gradient(180deg,rgba(18,75,143,.42),rgba(9,28,66,.58))}
+  .nav-actions{margin:0!important}
+  .nav-actions .nav-panel-btn{
+    min-height:46px!important;
+    border-radius:14px!important;
+    background:linear-gradient(90deg,rgba(26,117,220,.28),rgba(38,77,203,.28))!important;
+  }
+
+  /* quick bar: pure flags + contact shortcuts */
+  .mobile-topbar{
+    display:grid!important;
+    grid-template-columns:auto minmax(0,1fr) minmax(0,.78fr)!important;
+    gap:7px!important;
+    align-items:center!important;
+    margin:7px 0 0!important;
+    padding:0!important;
+  }
+  .mobile-lang-flags{gap:5px!important}
+  .mobile-flag-btn{
+    width:36px!important;height:34px!important;
+    border-radius:10px!important;
+    padding:0!important;
+    border:1px solid rgba(109,185,255,.30)!important;
+    background:#06122c!important;
+    box-shadow:0 7px 18px rgba(0,0,0,.15)!important;
+  }
+  .mobile-flag-btn.active{
+    border-color:#87d5ff!important;
+    box-shadow:0 0 0 1px rgba(112,204,255,.18),0 0 16px rgba(36,129,255,.24)!important;
+  }
+  .mobile-quick-link{
+    min-height:38px!important;
+    padding:0 9px!important;
+    border-radius:12px!important;
+    gap:6px!important;
+    font-size:10px!important;
+    letter-spacing:.02em!important;
+    overflow:hidden;
+  }
+  .mobile-quick-link.whatsapp{
+    background:linear-gradient(180deg,rgba(14,65,51,.78),rgba(5,33,36,.88))!important;
+    border-color:rgba(76,221,145,.48)!important;
+  }
+  .mobile-quick-link.telegram{
+    background:linear-gradient(180deg,rgba(13,55,91,.84),rgba(7,28,55,.90))!important;
+    border-color:rgba(86,183,255,.52)!important;
+  }
+
+  /* hero */
+  .page-shell::before{
+    background-position:68% 5px!important;
+    background-size:auto 780px!important;
+  }
+  .page-shell::after{
+    background:
+      linear-gradient(180deg,rgba(2,8,23,.28) 0%,rgba(2,8,23,.42) 20%,rgba(2,8,23,.72) 53%,rgba(2,8,23,.98) 86%,#030916 100%),
+      linear-gradient(90deg,rgba(2,8,23,.86) 0%,rgba(2,8,23,.44) 54%,rgba(2,8,23,.12) 100%)!important;
+  }
+  .hero{
+    min-height:auto!important;
+    padding:34px 0 64px!important;
+    align-items:flex-start!important;
+  }
+  .hero-grid{padding-top:0!important;width:100%!important}
+  .eyebrow{
+    min-height:34px!important;
+    margin-bottom:18px!important;
+    padding:8px 12px!important;
+    font-size:10px!important;
+    letter-spacing:.085em!important;
+    color:#dfeeff!important;
+    background:rgba(5,15,38,.55)!important;
+    border-color:rgba(95,169,255,.36)!important;
+    box-shadow:inset 0 0 12px rgba(39,122,255,.06)!important;
+  }
+  .eyebrow .badge-icon{width:16px!important;height:16px!important}
+  .hero-brand-title{
+    display:flex!important;
+    align-items:center!important;
+    gap:9px!important;
+    white-space:nowrap!important;
+    font-size:clamp(45px,14.3vw,61px)!important;
+    letter-spacing:-.055em!important;
+    line-height:.92!important;
+    filter:drop-shadow(0 0 20px rgba(51,135,255,.24))!important;
+  }
+  .hero-brand-title .global-word{
+    background:linear-gradient(180deg,#ffffff 0%,#e7f3ff 46%,#8fc7ff 100%)!important;
+    -webkit-background-clip:text!important;background-clip:text!important;color:transparent!important;
+  }
+  .hero-brand-title .tv-mark{
+    font-size:.43em!important;
+    padding:.18em .24em .20em!important;
+    border-radius:.30em!important;
+    border-color:rgba(111,202,255,.94)!important;
+    background:linear-gradient(145deg,rgba(21,170,255,.31),rgba(43,74,255,.48))!important;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 0 24px rgba(35,132,255,.34)!important;
+  }
+  .hero-sub{
+    font-size:20px!important;
+    margin-top:10px!important;
+    color:#e9f3ff!important;
+    font-weight:500!important;
+  }
+  .hero-line{width:46px!important;height:4px!important;margin:15px 0 15px!important}
+  .hero p{
+    max-width:94%!important;
+    font-size:14px!important;
+    line-height:1.55!important;
+    color:#c8daf2!important;
+    text-wrap:pretty;
+  }
+
+  /* compact, readable IPTV facts on the left */
+  .mobile-iptv-info{
+    display:flex!important;
+    flex-direction:column!important;
+    gap:6px!important;
+    width:min(100%,325px)!important;
+    margin-top:17px!important;
+  }
+  .mobile-iptv-info>div{
+    position:relative;
+    width:100%!important;
+    min-height:36px!important;
+    padding:7px 10px 7px 28px!important;
+    border:0!important;
+    border-radius:10px!important;
+    background:linear-gradient(90deg,rgba(8,27,66,.72),rgba(6,17,41,.24))!important;
+    box-shadow:inset 0 0 12px rgba(46,125,255,.04)!important;
+    display:grid!important;
+    grid-template-columns:92px 1fr!important;
+    align-items:center!important;
+    gap:7px!important;
+    text-align:left!important;
+  }
+  .mobile-iptv-info>div::before{
+    content:"";
+    position:absolute;
+    left:11px;top:50%;transform:translateY(-50%);
+    width:7px;height:7px;border-radius:50%;
+    background:#48bfff;
+    box-shadow:0 0 10px rgba(72,191,255,.75);
+  }
+  .mobile-iptv-info>div:nth-child(n+5){display:none!important}
+  .mobile-iptv-info strong{
+    min-width:0!important;margin:0!important;
+    color:#e2f4ff!important;font-size:9.5px!important;line-height:1.2!important;letter-spacing:.045em!important;
+  }
+  .mobile-iptv-info span{
+    color:#91acd0!important;font-size:9.5px!important;line-height:1.25!important;
+  }
+  .hero-actions{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    gap:9px!important;
+    margin-top:20px!important;
+  }
+  .hero-actions .btn-primary,.hero-actions .btn-ghost{
+    width:100%!important;
+    min-height:50px!important;
+    padding:0 11px!important;
+    border-radius:15px!important;
+    font-size:11px!important;
+    letter-spacing:.015em!important;
+  }
+  .hero-actions svg{width:17px!important;height:17px!important}
+
+  /* feature cards become a horizontal premium rail */
+  .hero-card-row{
+    display:flex!important;
+    grid-template-columns:none!important;
+    gap:11px!important;
+    overflow-x:auto!important;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:none;
+    margin:28px -12px 0!important;
+    padding:0 12px 10px!important;
+  }
+  .hero-card-row::-webkit-scrollbar{display:none}
+  .hero-card{
+    flex:0 0 min(78vw,290px)!important;
+    min-height:152px!important;
+    scroll-snap-align:start;
+    border-radius:21px!important;
+    padding:18px 17px!important;
+    background:linear-gradient(160deg,rgba(10,28,66,.86),rgba(5,13,33,.90))!important;
+    border-color:rgba(78,164,255,.32)!important;
+    box-shadow:0 14px 34px rgba(0,0,0,.22),inset 0 0 20px rgba(54,132,255,.06)!important;
+  }
+  .hero-card .icon-box{width:46px!important;height:46px!important;border-radius:15px!important}
+  .hero-card h3{font-size:15px!important;margin:13px 0 5px!important}
+  .hero-card p{font-size:11px!important;line-height:1.4!important;max-width:100%!important}
+  .hero-card .accent{margin-top:12px!important}
+
+  /* sections */
+  .section{padding:66px 0!important}
+  .section-title{text-align:left!important;margin-bottom:28px!important}
+  .section-title small{font-size:10px!important;margin-bottom:9px!important}
+  .section-title h2{font-size:30px!important;line-height:1.08!important;letter-spacing:-.025em!important}
+  .section-title p{font-size:14px!important;line-height:1.55!important;margin-top:10px!important;color:#9eb5d3!important}
+
+  /* package selector */
+  .pricing-switch{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    gap:8px!important;
+    margin:0 0 18px!important;
+    padding:5px!important;
+    border-radius:16px!important;
+    border:1px solid rgba(86,159,255,.18);
+    background:rgba(5,15,38,.58);
+  }
+  .pricing-switch button{
+    min-height:43px!important;
+    padding:0 10px!important;
+    border-radius:12px!important;
+    font-size:11px!important;
+  }
+
+  /* domestic cards are now clearly Premium on mobile */
+  .pricing-grid{grid-template-columns:1fr!important;gap:14px!important}
+  .pricing-card{
+    min-height:0!important;
+    padding:22px!important;
+    border-radius:22px!important;
+  }
+  .pricing-card[data-group="tr"]{
+    position:relative;
+    overflow:hidden;
+    border-color:rgba(88,179,255,.42)!important;
+    background:
+      radial-gradient(circle at 100% 0%,rgba(27,130,255,.18),transparent 34%),
+      linear-gradient(160deg,rgba(9,26,63,.96),rgba(4,13,33,.98))!important;
+    box-shadow:0 16px 38px rgba(0,0,0,.25),inset 0 0 28px rgba(54,137,255,.08)!important;
+  }
+  .pricing-card[data-group="tr"]::after{
+    content:"PREMIUM";
+    position:absolute;
+    top:17px;right:17px;
+    padding:6px 9px;
+    border-radius:999px;
+    font-size:9px;
+    letter-spacing:.12em;
+    font-weight:900;
+    color:#eaf7ff;
+    border:1px solid rgba(107,194,255,.38);
+    background:linear-gradient(90deg,rgba(24,179,255,.18),rgba(45,88,255,.28));
+    box-shadow:0 0 16px rgba(46,93,255,.18);
+  }
+  .pricing-card[data-group="tr"].featured::before{display:none!important}
+  .pricing-card .plan{font-size:10px!important;letter-spacing:.13em!important;color:#86ceff!important}
+  .pricing-card h3{font-size:24px!important;margin:7px 0 0!important}
+  .pricing-card .price{font-size:42px!important;margin:14px 0 8px!important;letter-spacing:-.03em}
+  .pricing-card ul{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    column-gap:14px!important;
+    margin:13px 0 19px!important;
+    font-size:10.5px!important;
+    line-height:1.28!important;
+  }
+  .pricing-card li{padding:8px 0 8px 17px!important;border-bottom:1px solid rgba(82,152,255,.10)!important}
+  .pricing-card li::before{top:8px!important;font-size:10px!important}
+  .pricing-card .buy{min-height:48px!important;border-radius:14px!important;font-size:12px!important}
+
+  /* the rest of mobile content */
+  .feature-grid{gap:11px!important}
+  .feature-item,.device-copy,.contact-card,.cta-box{padding:22px!important;border-radius:22px!important}
+  .feature-item h3{font-size:18px!important}
+  .feature-item p,.device-copy p,.contact-card p,.cta-box p{font-size:13px!important;line-height:1.55!important}
+  .feature-item .feature-icon{width:54px!important;height:54px!important;border-radius:17px!important}
+  .chip-list{gap:8px!important}
+  .chip{font-size:11px!important;padding:9px 11px!important}
+  .faq{gap:10px!important}
+  .faq-item{padding:0 16px!important;border-radius:18px!important}
+  .faq-item summary{font-size:14px!important;padding:18px 0!important}
+  .faq-item p{font-size:12.5px!important;line-height:1.55!important;padding-bottom:18px!important}
+  .cta-section{padding:0 0 70px!important}
+  .cta-actions{display:grid!important;grid-template-columns:1fr 1fr!important;gap:9px!important;width:100%!important}
+  .cta-actions .btn-primary,.cta-actions .btn-ghost{min-height:48px!important;font-size:11px!important;padding:0 10px!important}
+  footer{padding-bottom:32px!important;font-size:11px!important}
+  .footer-row{gap:12px!important}
+
+  .social-float{display:none!important}
+}
+
+@media (max-width:380px){
+  .mobile-topbar{grid-template-columns:auto 1fr!important}
+  .mobile-quick-link.telegram{display:none!important}
+  .hero-brand-title{font-size:43px!important}
+  .hero-actions{grid-template-columns:1fr!important}
+  .pricing-card ul{grid-template-columns:1fr!important}
+}
+
+
+/* ===== MOBILE V7 — compact top controls + 2x2 info grid ===== */
+@media (max-width:700px){
+  .nav-wrap{
+    display:grid!important;
+    grid-template-columns:auto minmax(0,1fr) auto!important;
+    align-items:center!important;
+    column-gap:8px!important;
+    row-gap:0!important;
+  }
+  .brand{grid-column:1!important;grid-row:1!important}
+  .mobile-topbar{
+    grid-column:2!important;
+    grid-row:1!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:flex-end!important;
+    gap:5px!important;
+    margin:0!important;
+    padding:0!important;
+    min-width:0!important;
+  }
+  .mobile-lang-flags{
+    display:flex!important;
+    align-items:center!important;
+    gap:4px!important;
+    flex:0 0 auto!important;
+  }
+  .mobile-flag-btn{
+    width:24px!important;
+    height:22px!important;
+    min-width:24px!important;
+    border-radius:7px!important;
+    overflow:hidden!important;
+  }
+  .mobile-quick-link{
+    flex:0 0 auto!important;
+    min-width:0!important;
+    width:auto!important;
+    min-height:29px!important;
+    height:29px!important;
+    padding:0 6px!important;
+    border-radius:9px!important;
+    font-size:7.6px!important;
+    font-weight:900!important;
+    letter-spacing:.01em!important;
+    gap:3px!important;
+    white-space:nowrap!important;
+  }
+  .mobile-quick-link svg{width:11px!important;height:11px!important}
+  .mobile-toggle{
+    grid-column:3!important;
+    grid-row:1!important;
+    margin:0!important;
+    width:44px!important;
+    height:44px!important;
+    border-radius:14px!important;
+  }
+  .nav-wrap>nav{
+    grid-column:1 / -1!important;
+    grid-row:2!important;
+  }
+
+  .hero-card-row{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:10px!important;
+    overflow:visible!important;
+    scroll-snap-type:none!important;
+    margin:28px 0 0!important;
+    padding:0!important;
+  }
+  .hero-card{
+    flex:none!important;
+    width:auto!important;
+    min-width:0!important;
+    min-height:148px!important;
+    padding:15px 13px!important;
+    border-radius:19px!important;
+    scroll-snap-align:none!important;
+  }
+  .hero-card .icon-box{width:42px!important;height:42px!important;border-radius:14px!important}
+  .hero-card .icon-box svg{width:21px!important;height:21px!important}
+  .hero-card h3{font-size:13.5px!important;line-height:1.2!important;margin:11px 0 4px!important}
+  .hero-card p{font-size:10px!important;line-height:1.35!important}
+  .hero-card .accent{width:28px!important;height:3px!important;margin-top:10px!important}
+}
+@media (max-width:380px){
+  .mobile-topbar{gap:4px!important}
+  .mobile-flag-btn{width:22px!important;height:20px!important;min-width:22px!important}
+  .mobile-quick-link{height:27px!important;min-height:27px!important;padding:0 5px!important;font-size:7px!important}
+  .mobile-quick-link svg{width:10px!important;height:10px!important}
+  .mobile-toggle{width:42px!important;height:42px!important}
+  .hero-card-row{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+  .hero-card{padding:13px 11px!important;min-height:144px!important}
+}
+
+
+/* ===== MOBILE V8 — right-side single-column menu + clearer language control ===== */
+@media (max-width:700px){
+  .nav-wrap{position:relative!important;overflow:visible!important}
+
+  /* Make language selection visibly intentional, not just two floating flags */
+  .mobile-lang-flags{
+    display:flex!important;
+    align-items:center!important;
+    gap:4px!important;
+    padding:3px 4px 3px 6px!important;
+    border:1px solid rgba(102,177,255,.34)!important;
+    border-radius:10px!important;
+    background:linear-gradient(180deg,rgba(7,24,58,.92),rgba(4,14,37,.94))!important;
+    box-shadow:inset 0 0 12px rgba(42,128,255,.08),0 0 12px rgba(37,118,255,.08)!important;
+  }
+  .mobile-lang-label{
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    min-width:22px!important;
+    color:#9edbff!important;
+    font-size:7.5px!important;
+    font-weight:950!important;
+    letter-spacing:.07em!important;
+    line-height:1!important;
+    white-space:nowrap!important;
+  }
+  .mobile-flag-btn{
+    width:23px!important;
+    min-width:23px!important;
+    height:20px!important;
+    padding:0!important;
+    border-radius:6px!important;
+  }
+  .mobile-flag-btn.active{
+    border-color:#8fdcff!important;
+    box-shadow:0 0 0 1px rgba(143,220,255,.20),0 0 12px rgba(51,147,255,.30)!important;
+  }
+
+  /* Menu opens as a compact right-side vertical panel instead of stretching the header */
+  .nav-wrap>nav{
+    grid-column:auto!important;
+    grid-row:auto!important;
+  }
+  .nav-wrap.open nav{
+    display:flex!important;
+    position:absolute!important;
+    top:calc(100% + 8px)!important;
+    right:0!important;
+    left:auto!important;
+    width:min(232px,calc(100vw - 28px))!important;
+    margin:0!important;
+    padding:10px!important;
+    gap:8px!important;
+    border:1px solid rgba(95,169,255,.36)!important;
+    border-radius:18px!important;
+    background:linear-gradient(180deg,rgba(5,16,42,.98),rgba(4,12,32,.98))!important;
+    box-shadow:0 18px 45px rgba(0,0,0,.42),0 0 24px rgba(40,124,255,.16),inset 0 0 18px rgba(46,131,255,.05)!important;
+    backdrop-filter:blur(18px)!important;
+    z-index:90!important;
+  }
+  .nav-links{
+    display:flex!important;
+    flex-direction:column!important;
+    grid-template-columns:none!important;
+    width:100%!important;
+    gap:6px!important;
+    margin:0!important;
+  }
+  .nav-links a{
+    min-height:40px!important;
+    width:100%!important;
+    justify-content:flex-start!important;
+    padding:0 13px!important;
+    border-radius:11px!important;
+    font-size:12px!important;
+    text-align:left!important;
+  }
+  .nav-links a.active{
+    border-color:rgba(94,185,255,.50)!important;
+    background:linear-gradient(90deg,rgba(22,105,203,.34),rgba(10,35,79,.58))!important;
+    box-shadow:inset 3px 0 0 #3ec8ff!important;
+  }
+  .nav-actions{
+    width:100%!important;
+    display:block!important;
+    margin:2px 0 0!important;
+  }
+  .nav-actions .nav-panel-btn{
+    width:100%!important;
+    min-width:0!important;
+    min-height:42px!important;
+    justify-content:flex-start!important;
+    padding:0 13px!important;
+    font-size:12px!important;
+    border-radius:11px!important;
+  }
+  .nav-actions .lang-switch,
+  .nav-actions .nav-whatsapp-btn{display:none!important}
+}
+@media (max-width:380px){
+  .mobile-lang-label{font-size:7px!important;min-width:20px!important}
+  .mobile-lang-flags{gap:3px!important;padding-left:5px!important}
+  .mobile-flag-btn{width:21px!important;min-width:21px!important;height:19px!important}
+  .nav-wrap.open nav{width:min(220px,calc(100vw - 22px))!important}
+}
+
+</style>
+</head>
+<body>
+<div class="page-shell">
+<div class="glow-orb"></div>
+<div class="glow-orb-2"></div>
+<header>
+<div class="container">
+<div class="nav-wrap" id="navWrap">
+<a aria-label="GLOBAL TV ana sayfa" class="brand" href="#anasayfa">
+<div aria-hidden="true" class="brand-logo">
+<span class="v-line"></span>
+<span class="h-line"></span>
+<span class="h-line-2"></span>
+<div class="logo-text"><span>GLOBAL</span><span>TV</span></div>
+</div>
+</a>
+<div class="mobile-topbar" aria-label="Mobil hızlı işlemler">
+  <div class="mobile-lang-flags" aria-label="Dil seçimi / Sprachauswahl">
+    <span class="mobile-lang-label" aria-hidden="true">DİL</span>
+    <button type="button" class="mobile-flag-btn lang-btn active" data-lang="tr" aria-label="Türkçe" title="Türkçe">
+      <svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#E30A17"/><circle cx="12" cy="10" r="5" fill="#fff"/><circle cx="13.4" cy="10" r="4" fill="#E30A17"/><path d="m17.3 10 3.2-1.05-1.98 2.72v-3.34l1.98 2.72z" fill="#fff"/></svg>
+    </button>
+    <button type="button" class="mobile-flag-btn lang-btn" data-lang="de" aria-label="Deutsch" title="Deutsch">
+      <svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="6.667" y="0" fill="#000"/><rect width="30" height="6.667" y="6.667" fill="#DD0000"/><rect width="30" height="6.666" y="13.334" fill="#FFCE00"/></svg>
+    </button>
+  </div>
+  <a class="mobile-quick-link whatsapp" href="https://wa.me/447729203566?text=Merhaba%20GLOBAL%20TV%2C%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.7 11.7 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L.2 24l6.5-1.7a11.8 11.8 0 0 0 5.4 1.4h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.5-8.4Z"/></svg>
+    <span>İLETİŞİME GEÇ</span>
+  </a>
+  <a class="mobile-quick-link telegram" href="https://t.me/globalliptv12" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.7 3.5 18.6 20c-.2 1.2-.9 1.5-1.9.9l-4.8-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.4-4.9 8.8-7.9c.4-.3-.1-.5-.6-.2L6.3 14 1.6 12.5c-1-.3-1-1 .2-1.5L20.1 3.9c.9-.3 1.7.2 1.6-.4Z"/></svg>
+    <span>TELEGRAM</span>
+  </a>
+</div>
+<button aria-label="Menüyü aç" class="mobile-toggle" id="mobileToggle">
+<span></span><span></span><span></span>
+</button>
+<nav>
+<div class="nav-links">
+<a class="active" href="#anasayfa">Ana Sayfa</a>
+<a href="#paketler">Paketler</a>
+<a href="#ozellikler">Özellikler</a>
+<a href="#cihazlar">Cihazlar</a>
+<a href="#sss">SSS</a>
+<a href="#iletisim">İletişim</a>
+</div>
+<div class="nav-actions">
+<div class="lang-switch" aria-label="Dil seçimi / Sprachauswahl">
+<button type="button" class="lang-btn active" data-lang="tr" aria-label="Türkçe" title="Türkçe"><span aria-hidden="true">🇹🇷</span></button>
+<button type="button" class="lang-btn" data-lang="de" aria-label="Deutsch" title="Deutsch"><span aria-hidden="true">🇩🇪</span></button>
+</div>
+<a class="btn-outline nav-panel-btn" href="https://musteripaneli.xyz/index.php?page=login" rel="noopener" target="_blank"><svg class="nav-btn-icon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><rect height="16" rx="3" width="18" x="3" y="4"></rect><path d="M7 9h10M7 13h6"></path></svg>Müşteri Paneli</a>
+<a aria-label="WhatsApp iletişim" class="btn-outline nav-whatsapp-btn" href="https://wa.me/447729203566?text=Merhaba%20GLOBAL%20TV%2C%20bilgi%20almak%20istiyorum." rel="noopener" target="_blank">
+<svg class="nav-btn-icon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M21 11.5A8.5 8.5 0 0 1 8.2 19L3 21l2.1-5A8.5 8.5 0 1 1 21 11.5Z"></path><path d="M8.5 9.2c.5 2.4 2 3.9 4.4 4.5"></path></svg>
+      WhatsApp İletişim
+    </a></div>
+</nav>
+</div>
+
+
+</div>
+</header><div aria-label="Sosyal medya bağlantıları" class="social-float">
+<a aria-label="Telegram" class="social-float-btn telegram" href="https://t.me/globalliptv12" rel="noopener" target="_blank" title="Telegram">
+<svg aria-hidden="true" viewbox="0 0 24 24"><path d="M21.7 3.5 18.6 20c-.2 1.2-.9 1.5-1.9.9l-4.8-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.4-4.9 8.8-7.9c.4-.3-.1-.5-.6-.2L6.3 14 1.6 12.5c-1-.3-1-1 .2-1.5L20.1 3.9c.9-.3 1.7.2 1.6-.4Z" fill="currentColor"></path></svg>
+<span>Telegram</span>
+</a>
+<a aria-label="X Twitter" class="social-float-btn xbtn" href="https://x.com/globaltv1233" rel="noopener" target="_blank" title="X / Twitter">
+<svg aria-hidden="true" viewbox="0 0 24 24"><path d="M18.9 2H22l-6.8 7.8L23.2 22H17l-4.9-6.4L6.5 22H3.4l7.2-8.2L.9 2h6.4l4.4 5.8L18.9 2Zm-1.1 17.8h1.7L6.4 4H4.6l13.2 15.8Z" fill="currentColor"></path></svg>
+<span>X / Twitter</span>
+</a>
+<a aria-label="WhatsApp" class="social-float-btn whatsapp" href="https://wa.me/447729203566?text=Merhaba%20GLOBAL%20TV%2C%20bilgi%20almak%20istiyorum." rel="noopener" target="_blank" title="WhatsApp">
+<svg aria-hidden="true" viewbox="0 0 24 24"><path d="M20.5 3.5A11.7 11.7 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.5 4.1 1.6 5.9L.2 24l6.5-1.7a11.8 11.8 0 0 0 5.4 1.4h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.5-8.4Zm-8.3 18.2a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.8 9.8 0 1 1 8.4 4.7Zm5.4-7.4c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.7-.8-2.8-1.5-3.9-3.4-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.6-.1-.2-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9s1.2 3.3 1.4 3.6c.2.2 2.4 3.7 5.9 5.2 2.2 1 3 .9 4.1.8.7-.1 1.8-.8 2.1-1.5.3-.7.3-1.4.2-1.5-.1-.1-.4-.2-.7-.3Z" fill="currentColor"></path></svg>
+<span>WhatsApp</span>
+</a>
+</div>
+<main>
+<section class="hero" id="anasayfa">
+<div class="container">
+<div class="hero-grid">
+<div class="eyebrow">
+<svg class="badge-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"></path></svg>
+              DÜNYANIN EĞLENCESİ TEK YERDE!
+            </div>
+<h1 class="hero-brand-title"><span class="global-word">GLOBAL</span><span class="tv-mark">TV</span></h1>
+<div class="hero-sub">En İyi Hizmetin Adresi</div>
+<div class="hero-line"></div>
+<p>
+              Dünya genelindeki binlerce canlı TV kanalı, film ve dizi içeriğini yüksek kaliteyle,
+              <strong>kesintisiz</strong> ve <strong>güvenilir</strong> şekilde izleyin. Global TV ile eğlence artık
+              <strong>her yerde</strong>, <strong>her cihazda</strong> sizinle!
+            </p><div aria-label="IPTV özellikleri" class="mobile-iptv-info">
+<div><strong>CANLI TV</strong><span>Ulusal &amp; dünya kanalları</span></div>
+<div><strong>SPOR</strong><span>Canlı karşılaşmalar</span></div>
+<div><strong>FİLM &amp; DİZİ</strong><span>Güncel VOD arşivi</span></div>
+<div><strong>4K / FHD / HD</strong><span>Yüksek yayın kalitesi</span></div>
+<div><strong>ANINDA AKTİVASYON</strong><span>Hızlı kurulum</span></div>
+<div><strong>7/24 DESTEK</strong><span>Canlı teknik destek</span></div>
+</div>
+<div class="hero-actions">
+<a class="btn-primary" href="#paketler">
+<svg fill="currentColor" height="20" viewbox="0 0 24 24" width="20"><path d="M7 4h10l1 4h3v2h-1l-1.4 8.2a2 2 0 0 1-2 1.8H7.4a2 2 0 0 1-2-1.8L4 10H3V8h3l1-4Zm2 0-1 4h8l-1-4H9Zm4 8.5-1.4 1.4V11H10v2.9l-1.4-1.4-1.1 1.1L12 18l4.5-4.4-1.5-1.1Z"></path></svg>
+                PAKETLERİ KEŞFET
+              </a>
+<a class="btn-ghost" href="https://wa.me/447729203566?text=Merhaba%20GLOBAL%20TV%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." rel="noopener" target="_blank">
+<svg fill="none" height="22" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="22"><path d="M21 11.5A8.5 8.5 0 0 1 8.2 19L3 21l2.1-5A8.5 8.5 0 1 1 21 11.5Z"></path></svg>
+                İLETİŞİME GEÇ
+              </a>
+</div>
+</div>
+<div class="hero-card-row">
+<article class="hero-card">
+<div class="icon-box">
+<svg fill="none" height="34" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24" width="34"><rect height="14" rx="2" width="18" x="3" y="5"></rect><path d="M8 21h8M12 17v4"></path></svg>
+</div>
+<div>
+<h3>50.000+ İçerik</h3>
+<p>Canlı TV, spor, film ve dizi içerikleri tek yerde.</p>
+<div class="accent"></div>
+</div>
+</article>
+<article class="hero-card">
+<div class="icon-box">
+<svg fill="none" height="34" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24" width="34"><circle cx="12" cy="12" r="8"></circle><path d="M12 4v16M4 12h16M7 7a14 14 0 0 0 10 10M17 7A14 14 0 0 1 7 17"></path></svg>
+</div>
+<div>
+<h3>Canlı TV &amp; Spor</h3>
+<p>Ulusal kanallar, dünya kanalları ve spor yayınları.</p>
+<div class="accent"></div>
+</div>
+</article>
+<article class="hero-card">
+<div class="icon-box">
+<svg fill="none" height="34" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24" width="34"><rect height="9" rx="2" width="13" x="3" y="6"></rect><path d="M8 18h8M12 15v3"></path><rect height="7" rx="1" width="3" x="18" y="8"></rect></svg>
+</div>
+<div>
+<h3>Film &amp; Dizi Arşivi</h3>
+<p>En güncel VOD içeriklerine kolay erişim.</p>
+<div class="accent"></div>
+</div>
+</article>
+<article class="hero-card">
+<div class="icon-box">
+<svg fill="none" height="34" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24" width="34"><path d="M12 3l7 3v5c0 5-3.6 8.7-7 10-3.4-1.3-7-5-7-10V6l7-3Z"></path><path d="m9 12 2 2 4-4"></path></svg>
+</div>
+<div>
+<h3>Tüm Cihazlarda</h3>
+<p>TV, telefon, tablet ve bilgisayarda SD, HD, FHD ve 4K destek.</p>
+<div class="accent"></div>
+</div>
+</article>
+</div>
+<div class="scroll-indicator"><div class="mouse"></div></div>
+</div>
+</section>
+<section class="section" id="paketler">
+<div class="container">
+<div class="section-title">
+<small>Paketler</small>
+<h2>Size Uygun Paketi Seçin</h2>
+<p>Premium ve yurt dışı kullanım için güncel GLOBAL TV paketleri. İhtiyacınıza göre hemen başlayın.</p>
+</div>
+<div class="pricing-switch">
+<button class="active" data-target="tr">Premium Paketler</button>
+<button data-target="abroad">Yurt Dışı Premium</button>
+</div>
+<div class="pricing-grid" id="pricingGrid">
+<article class="pricing-card glass-panel" data-group="tr">
+<div class="plan">Premium Paket</div>
+<h3>1 Ay</h3>
+<div class="price">600 <small>₺</small></div>
+<ul>
+                <li>1 Kullanıcı</li>
+                <li>7/24 Canlı Teknik Destek</li>
+                <li>Anında Aktivasyon</li>
+                <li>Kullanıcı Kontrol Paneli</li>
+                <li>En Güncel İçerik Arşivi</li>
+                <li>SD, HD, FHD, 4K Yayınlar</li>
+                <li>Geniş İçerik Seçenekleri</li>
+                <li>Çoklu Cihaz Desteği</li>
+              </ul>
+<a class="btn-ghost buy" href="https://wa.me/447729203566?text=Merhaba%20GLOBAL%20TV%201%20Ay%20paket%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." rel="noopener" target="_blank">Bilgi Al</a>
+</article>
+<article class="pricing-card glass-panel featured" data-group="tr">
+<div class="plan">Premium Paket</div>
+<h3>3 Ay</h3>
+<div class="price">900 <small>₺</small></div>
+<ul>
+                <li>1 Kullanıcı</li>
+                <li>7/24 Canlı Teknik Destek</li>
+                <li>Anında Aktivasyon</li>
+                <li>Kullanıcı Kontrol Paneli</li>
+                <li>En Güncel İçerik Arşivi</li>
+                <li>SD, HD, FHD, 4K Yayınlar</li>
+                <li>Geniş İçerik Seçenekleri</li>
+                <li>Çoklu Cihaz Desteği</li>
+              </ul>
+<a class="btn-primary buy" href="https://wa.me/447729203566?text=Merhaba%20GLOBAL%20TV%203%20Ay%20paket%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." rel="noopener" target="_blank">Satın Al</a>
+</article>
+<article class="pricing-card glass-panel" data-group="tr">
+<div class="plan">Premium Paket</div>
+<h3>6 Ay</h3>
+<div class="price">1.300 <small>₺</small></div>
+<ul>
+                <li>1 Kullanıcı</li>
+                <li>7/24 Canlı Teknik Destek</li>
+                <li>Anında Aktivasyon</li>
+                <li>Kullanıcı Kontrol Paneli</li>
+                <li>En Güncel İçerik Arşivi</li>
+                <li>SD, HD, FHD, 4K Yayınlar</li>
+                <li>Geniş İçerik Seçenekleri</li>
+                <li>Çoklu Cihaz Desteği</li>
+              </ul>
+<a class="btn-ghost buy" href="https://wa.me/447729203566?text=Merhaba%20GLOBAL%20TV%206%20Ay%20paket%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." rel="noopener" target="_blank">Bilgi Al</a>
+</article>
+<article class="pricing-card glass-panel" data-group="tr">
+<div class="plan">Premium Paket</div>
+<h3>12 Ay</h3>
+<div class="price">2.000 <small>₺</small></div>
+<ul>
+                <li>1 Kullanıcı</li>
+                <li>7/24 Canlı Teknik Destek</li>
+                <li>Anında Aktivasyon</li>
+                <li>Kullanıcı Kontrol Paneli</li>
+                <li>En Güncel İçerik Arşivi</li>
+                <li>SD, HD, FHD, 4K Yayınlar</li>
+                <li>Geniş İçerik Seçenekleri</li>
+                <li>Çoklu Cihaz Desteği</li>
+              </ul>
+<a class="btn-ghost buy" href="https://wa.me/447729203566?text=Merhaba%20GLOBAL%20TV%2012%20Ay%20paket%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." rel="noopener" target="_blank">Bilgi Al</a>
+</article>
+
+<article class="pricing-card glass-panel hidden" data-group="abroad">
+<div class="plan">Yurt Dışı Premium</div>
+<h3>3 Ay</h3>
+<div class="price">40 <small>€</small></div>
+<ul>
+                <li>1 Kullanıcı</li>
+                <li>7/24 Canlı Teknik Destek</li>
+                <li>Anında Aktivasyon</li>
+                <li>Kullanıcı Kontrol Paneli</li>
+                <li>En Güncel İçerik Arşivi</li>
+                <li>SD, HD, FHD, 4K Yayınlar</li>
+                <li>Geniş İçerik Seçenekleri</li>
+                <li>Çoklu Cihaz Desteği</li>
+              </ul>
+<a class="btn-ghost buy" href="https://wa.me/447729203566?text=Merhaba%20GLOBAL%20TV%20Yurt%20D%C4%B1%C5%9F%C4%B1%203%20Ay%20paket%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." rel="noopener" target="_blank">Bilgi Al</a>
+</article>
+<article class="pricing-card glass-panel featured hidden" data-group="abroad">
+<div class="plan">Yurt Dışı Premium</div>
+<h3>6 Ay</h3>
+<div class="price">60 <small>€</small></div>
+<ul>
+                <li>1 Kullanıcı</li>
+                <li>7/24 Canlı Teknik Destek</li>
+                <li>Anında Aktivasyon</li>
+                <li>Kullanıcı Kontrol Paneli</li>
+                <li>En Güncel İçerik Arşivi</li>
+                <li>SD, HD, FHD, 4K Yayınlar</li>
+                <li>Geniş İçerik Seçenekleri</li>
+                <li>Çoklu Cihaz Desteği</li>
+              </ul>
+<a class="btn-primary buy" href="https://wa.me/447729203566?text=Merhaba%20GLOBAL%20TV%20Yurt%20D%C4%B1%C5%9F%C4%B1%206%20Ay%20paket%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." rel="noopener" target="_blank">Satın Al</a>
+</article>
+<article class="pricing-card glass-panel hidden" data-group="abroad">
+<div class="plan">Yurt Dışı Premium</div>
+<h3>12 Ay</h3>
+<div class="price">90 <small>€</small></div>
+<ul>
+                <li>1 Kullanıcı</li>
+                <li>7/24 Canlı Teknik Destek</li>
+                <li>Anında Aktivasyon</li>
+                <li>Kullanıcı Kontrol Paneli</li>
+                <li>En Güncel İçerik Arşivi</li>
+                <li>SD, HD, FHD, 4K Yayınlar</li>
+                <li>Geniş İçerik Seçenekleri</li>
+                <li>Çoklu Cihaz Desteği</li>
+              </ul>
+<a class="btn-ghost buy" href="https://wa.me/447729203566?text=Merhaba%20GLOBAL%20TV%20Yurt%20D%C4%B1%C5%9F%C4%B1%2012%20Ay%20paket%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." rel="noopener" target="_blank">Bilgi Al</a>
+</article>
+</div>
+</div>
+</section>
+<section class="section" id="ozellikler">
+<div class="container">
+<div class="section-title">
+<small>Özellikler</small>
+<h2>Neden GLOBAL TV?</h2>
+<p>Premium görünüm, geniş içerik seçeneği ve kolay kullanım deneyimi ile ilk anda güven veren bir yapı.</p>
+</div>
+<div class="feature-grid">
+<article class="feature-item glass-panel">
+<div class="feature-icon">
+<svg fill="none" height="32" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24" width="32"><path d="M4 19.5A2.5 2.5 0 0 1 1.5 17V7A2.5 2.5 0 0 1 4 4.5h16A2.5 2.5 0 0 1 22.5 7v10a2.5 2.5 0 0 1-2.5 2.5Z"></path><path d="m9 8 7 4-7 4Z"></path></svg>
+</div>
+<h3>Canlı TV + VOD</h3>
+<p>Canlı TV kanalları, spor yayınları ve geniş film-dizi arşivini tek platformda birleştirir.</p>
+</article>
+<article class="feature-item glass-panel">
+<div class="feature-icon">
+<svg fill="none" height="32" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24" width="32"><path d="M3 6h18M7 12h10M10 18h4"></path></svg>
+</div>
+<h3>Kolay Kullanım</h3>
+<p>Basit menü yapısı ve anlaşılır arayüz ile kullanıcılar siteye girdiklerinde hızlıca yönlerini bulur.</p>
+</article>
+<article class="feature-item glass-panel">
+<div class="feature-icon">
+<svg fill="none" height="32" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24" width="32"><path d="M12 1v22"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7H14.5a3.5 3.5 0 1 1 0 7H6"></path></svg>
+</div>
+<h3>Güncel Paketler</h3>
+<p>TR ve yurt dışı paket fiyatları ayrı sekmelerde, kullanıcıların hızlı karar verebilmesi için net şekilde sunulur.</p>
+</article>
+<article class="feature-item glass-panel">
+<div class="feature-icon">
+<svg fill="none" height="32" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24" width="32"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 3"></path></svg>
+</div>
+<h3>Hızlı Aktivasyon</h3>
+<p>İletişime geçen kullanıcılar hızlı dönüş alır. Site tasarımı da bu hızlı deneyimi destekler.</p>
+</article>
+<article class="feature-item glass-panel">
+<div class="feature-icon">
+<svg fill="none" height="32" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24" width="32"><path d="M18 10a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M10.5 21a1.5 1.5 0 0 0 3 0"></path></svg>
+</div>
+<h3>7/24 Destek</h3>
+<p>İhtiyaç olduğunda iletişim kanalları üzerinden hızlı destek akışı sunulabilir.</p>
+</article>
+<article class="feature-item glass-panel">
+<div class="feature-icon">
+<svg fill="none" height="32" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24" width="32"><path d="M4 7h16v10H4z"></path><path d="M8 17h8"></path><path d="M10 21h4"></path></svg>
+</div>
+<h3>Modern Görsel Kimlik</h3>
+<p>Seçtiğiniz mavi küre arka planı ve neon detaylar ile premium bir ilk izlenim oluşturur.</p>
+</article>
+</div>
+</div>
+</section>
+<section class="section" id="cihazlar">
+<div class="container">
+<div class="device-layout">
+<div class="device-copy glass-panel">
+<small style="display:inline-block;color:#8acfff;letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin-bottom:12px">Cihazlar</small>
+<h2 style="margin:0 0 14px;font-size:clamp(32px,4vw,48px)">Her Cihazda Uyumlu Deneyim</h2>
+<p style="margin:0;color:var(--muted);font-size:18px;line-height:1.7">GLOBAL TV yayınlarına farklı cihazlarda kolayca erişebilirsiniz. Kullanıcıların siteye girdiklerinde bunu net görmesi için cihaz alanı özel olarak vurgulandı.</p>
+<div class="chip-list">
+<span class="chip">Smart TV</span>
+<span class="chip">Android TV</span>
+<span class="chip">iPhone / iPad</span>
+<span class="chip">Android Telefon</span>
+<span class="chip">Tablet</span>
+<span class="chip">Bilgisayar</span>
+<span class="chip">TV Box</span>
+<span class="chip">Laptop</span>
+</div>
+</div>
+<div class="contact-card glass-panel" id="iletisim">
+<div>
+<small style="display:inline-block;color:#8acfff;letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin-bottom:12px">İletişim</small>
+<h3>Hemen Bilgi Alın</h3>
+<p>Paketler, kurulum ve kullanım hakkında detaylı bilgi almak için WhatsApp üzerinden hızlıca iletişime geçebilirsiniz.</p>
+</div>
+<div class="hero-actions" style="margin-top:26px">
+<a class="btn-primary" href="https://wa.me/447729203566?text=Merhaba%20GLOBAL%20TV%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." rel="noopener" target="_blank">WhatsApp'tan Yaz</a>
+<a class="btn-ghost" href="https://musteripaneli.xyz/index.php?page=login" rel="noopener" target="_blank">Müşteri Paneli</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="sss">
+<div class="container">
+<div class="section-title">
+<small>SSS</small>
+<h2>Sıkça Sorulan Sorular</h2>
+<p>Kullanıcıların en çok merak ettiği konuları tek alanda topladık.</p>
+</div>
+<div class="faq">
+<details class="faq-item glass-panel" open="">
+<summary>GLOBAL TV hangi cihazlarda çalışır? <span>+</span></summary>
+<p>Smart TV, Android TV, telefon, tablet ve bilgisayar dahil pek çok cihazda kullanılabilir. Site içinde de cihaz uyumluluğu özellikle vurgulanmıştır.</p>
+</details>
+<details class="faq-item glass-panel">
+<summary>Paketler nasıl aktif edilir? <span>+</span></summary>
+<p>İletişime geçtiğinizde uygun paket seçilir ve aktivasyon süreci hızlı şekilde başlatılır.</p>
+</details>
+<details class="faq-item glass-panel">
+<summary>Yurt dışı paketleri ayrı mı? <span>+</span></summary>
+<p>Evet. Yurt dışı kullanım için Premium paketler ayrı sekme altında sunulmuştur: 3 ay 40 €, 6 ay 60 €, 12 ay 90 €.</p>
+</details>
+<details class="faq-item glass-panel">
+<summary>Canlı TV ve film-dizi içerikleri var mı? <span>+</span></summary>
+<p>Evet. Canlı TV, spor yayınları, film ve dizi arşivleri aynı yapı içinde sunulmaktadır.</p>
+</details>
+</div>
+</div>
+</section>
+<section class="cta-section">
+<div class="container">
+<div class="cta-box glass-panel">
+<div>
+<h2>GLOBAL TV ile premium ilk izlenim hazır</h2>
+<p>Seçtiğiniz mavi küre arka planı, yuvarlak logo dili ve neon mavi detaylarla modern, dikkat çekici ve kullanıcı dostu bir ana sayfa oluşturuldu.</p>
+</div>
+<div class="cta-actions">
+<a class="btn-primary" href="#paketler">Paketlere Git</a>
+<a class="btn-ghost" href="https://wa.me/447729203566?text=Merhaba%20GLOBAL%20TV%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." rel="noopener" target="_blank">İletişime Geç</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer>
+<div class="container">
+<div class="footer-row">
+<div>© 2026 GLOBAL TV — En İyi Hizmetin Adresi</div>
+<div style="display:flex;gap:18px;flex-wrap:wrap">
+<a href="#anasayfa">Ana Sayfa</a>
+<a href="#paketler">Paketler</a>
+<a href="#sss">SSS</a>
+<a href="https://wa.me/447729203566" rel="noopener" target="_blank">WhatsApp</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script>
+    const navWrap = document.getElementById('navWrap');
+    const mobileToggle = document.getElementById('mobileToggle');
+    mobileToggle?.addEventListener('click', () => navWrap.classList.toggle('open'));
+
+    const switchButtons = document.querySelectorAll('.pricing-switch button');
+    const pricingCards = document.querySelectorAll('.pricing-card');
+    switchButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        switchButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        const group = button.dataset.target;
+        pricingCards.forEach(card => {
+          card.classList.toggle('hidden', card.dataset.group !== group);
+        });
+      });
+    });
+  </script>
+
+<script>
+(function(){
+  const de = {
+    'Ana Sayfa':'Startseite','Paketler':'Pakete','Özellikler':'Vorteile','Cihazlar':'Geräte','İletişim':'Kontakt',
+    'Müşteri Paneli':'Kundenbereich','WhatsApp İletişim':'WhatsApp Kontakt',
+    'DÜNYANIN EĞLENCESİ TEK YERDE!':'DIE WELT DER UNTERHALTUNG AN EINEM ORT!','En İyi Hizmetin Adresi':'Ihre Adresse für besten Service',
+    'Dünya genelindeki binlerce canlı TV kanalı, film ve dizi içeriğini yüksek kaliteyle,':'Tausende Live-TV-Sender, Filme und Serien aus aller Welt in hoher Qualität,',
+    'kesintisiz':'stabil','ve':'und','güvenilir':'zuverlässig','şekilde izleyin. Global TV ile eğlence artık':'genießen. Mit Global TV ist Unterhaltung jetzt','her yerde':'überall','her cihazda':'auf jedem Gerät','sizinle!':'für Sie verfügbar!',
+    'CANLI TV':'LIVE-TV','Ulusal & dünya kanalları':'Nationale & internationale Sender','SPOR':'SPORT','Canlı karşılaşmalar':'Live-Sportübertragungen',
+    'FİLM & DİZİ':'FILME & SERIEN','Güncel VOD arşivi':'Aktuelle VOD-Bibliothek','Yüksek yayın kalitesi':'Hohe Streaming-Qualität',
+    'ANINDA AKTİVASYON':'SOFORTIGE AKTIVIERUNG','Hızlı kurulum':'Schnelle Einrichtung','7/24 DESTEK':'24/7 SUPPORT','Canlı teknik destek':'Technischer Live-Support',
+    'PAKETLERİ KEŞFET':'PAKETE ENTDECKEN','İLETİŞİME GEÇ':'KONTAKT AUFNEHMEN','50.000+ İçerik':'50.000+ Inhalte',
+    'Canlı TV, spor, film ve dizi içerikleri tek yerde.':'Live-TV, Sport, Filme und Serien an einem Ort.','Canlı TV & Spor':'Live-TV & Sport',
+    'Ulusal kanallar, dünya kanalları ve spor yayınları.':'Nationale Sender, internationale Sender und Sportübertragungen.','Film & Dizi Arşivi':'Film- & Serienarchiv',
+    'En güncel VOD içeriklerine kolay erişim.':'Einfacher Zugriff auf aktuelle VOD-Inhalte.','Tüm Cihazlarda':'Auf allen Geräten',
+    'TV, telefon, tablet ve bilgisayarda SD, HD, FHD ve 4K destek.':'SD-, HD-, FHD- und 4K-Unterstützung auf TV, Smartphone, Tablet und Computer.',
+    'Size Uygun Paketi Seçin':'Wählen Sie das passende Paket','Premium ve yurt dışı kullanım için güncel GLOBAL TV paketleri. İhtiyacınıza göre hemen başlayın.':'Aktuelle GLOBAL-TV-Pakete für die Türkei und die Nutzung im Ausland. Starten Sie direkt mit dem passenden Paket.',
+    'Premium Paketler':'Premium-Pakete','Yurt Dışı Premium':'Ausland Premium','Premium Paket':'Premium-Paket','1 Ay':'1 Monat','3 Ay':'3 Monate','6 Ay':'6 Monate','12 Ay':'12 Monate',
+    '1 Kullanıcı':'1 Benutzer','7/24 Canlı Teknik Destek':'24/7 Technischer Live-Support','Anında Aktivasyon':'Sofortige Aktivierung','Kullanıcı Kontrol Paneli':'Benutzer-Kontrollpanel',
+    'En Güncel İçerik Arşivi':'Aktuelle Inhaltsbibliothek','SD, HD, FHD, 4K Yayınlar':'SD-, HD-, FHD- und 4K-Streams','Geniş İçerik Seçenekleri':'Große Inhaltsauswahl','Çoklu Cihaz Desteği':'Unterstützung für mehrere Geräte',
+    'Bilgi Al':'Mehr erfahren','Satın Al':'Jetzt kaufen','Neden GLOBAL TV?':'Warum GLOBAL TV?','Premium görünüm, geniş içerik seçeneği ve kolay kullanım deneyimi ile ilk anda güven veren bir yapı.':'Ein moderner Premium-Auftritt, große Inhaltsauswahl und einfache Bedienung für einen professionellen ersten Eindruck.',
+    'Canlı TV + VOD':'Live-TV + VOD','Canlı TV kanalları, spor yayınları ve geniş film-dizi arşivini tek platformda birleştirir.':'Live-TV, Sportübertragungen sowie eine umfangreiche Film- und Serienbibliothek auf einer Plattform.',
+    'Kolay Kullanım':'Einfache Bedienung','Basit menü yapısı ve anlaşılır arayüz ile kullanıcılar siteye girdiklerinde hızlıca yönlerini bulur.':'Eine übersichtliche Navigation und klare Oberfläche sorgen für eine einfache Nutzung.',
+    'Güncel Paketler':'Aktuelle Pakete','TR ve yurt dışı paket fiyatları ayrı sekmelerde, kullanıcıların hızlı karar verebilmesi için net şekilde sunulur.':'Preise für die Türkei und das Ausland werden übersichtlich in getrennten Bereichen dargestellt.',
+    'Hızlı Aktivasyon':'Schnelle Aktivierung','İletişime geçen kullanıcılar hızlı dönüş alır. Site tasarımı da bu hızlı deneyimi destekler.':'Anfragen können schnell bearbeitet werden. Die Website unterstützt diesen unkomplizierten Ablauf.',
+    '7/24 Destek':'24/7 Support','İhtiyaç olduğunda iletişim kanalları üzerinden hızlı destek akışı sunulabilir.':'Bei Bedarf steht schnelle Unterstützung über die Kontaktkanäle zur Verfügung.',
+    'Modern Görsel Kimlik':'Modernes Erscheinungsbild','Seçtiğiniz mavi küre arka planı ve neon detaylar ile premium bir ilk izlenim oluşturur.':'Der blaue Globus-Hintergrund und Neon-Details sorgen für einen hochwertigen ersten Eindruck.',
+    'Her Cihazda Uyumlu Deneyim':'Kompatibel auf allen Geräten','GLOBAL TV yayınlarına farklı cihazlarda kolayca erişebilirsiniz. Kullanıcıların siteye girdiklerinde bunu net görmesi için cihaz alanı özel olarak vurgulandı.':'GLOBAL TV kann bequem auf verschiedenen Geräten genutzt werden. Die Gerätekompatibilität wird auf der Website klar hervorgehoben.',
+    'Android Telefon':'Android-Smartphone','Bilgisayar':'Computer','Hemen Bilgi Alın':'Jetzt informieren','Paketler, kurulum ve kullanım hakkında detaylı bilgi almak için WhatsApp üzerinden hızlıca iletişime geçebilirsiniz.':'Für Informationen zu Paketen, Einrichtung und Nutzung können Sie uns schnell über WhatsApp kontaktieren.',
+    "WhatsApp'tan Yaz":'Über WhatsApp schreiben','Sıkça Sorulan Sorular':'Häufig gestellte Fragen','Kullanıcıların en çok merak ettiği konuları tek alanda topladık.':'Die häufigsten Fragen haben wir hier für Sie zusammengefasst.',
+    'GLOBAL TV hangi cihazlarda çalışır?':'Auf welchen Geräten funktioniert GLOBAL TV?','Smart TV, Android TV, telefon, tablet ve bilgisayar dahil pek çok cihazda kullanılabilir. Site içinde de cihaz uyumluluğu özellikle vurgulanmıştır.':'GLOBAL TV kann auf vielen Geräten genutzt werden, darunter Smart TV, Android TV, Smartphone, Tablet und Computer.',
+    'Paketler nasıl aktif edilir?':'Wie werden die Pakete aktiviert?','İletişime geçtiğinizde uygun paket seçilir ve aktivasyon süreci hızlı şekilde başlatılır.':'Nach der Kontaktaufnahme wählen Sie das passende Paket und die Aktivierung wird schnell gestartet.',
+    'Yurt dışı paketleri ayrı mı?':'Gibt es separate Pakete für das Ausland?','Evet. Yurt dışı kullanım için Premium paketler ayrı sekme altında sunulmuştur: 3 ay 40 €, 6 ay 60 €, 12 ay 90 €.':'Ja. Premium-Pakete für die Nutzung im Ausland werden separat angeboten: 3 Monate 40 €, 6 Monate 60 €, 12 Monate 90 €.',
+    'Canlı TV ve film-dizi içerikleri var mı?':'Gibt es Live-TV sowie Filme und Serien?','Evet. Canlı TV, spor yayınları, film ve dizi arşivleri aynı yapı içinde sunulmaktadır.':'Ja. Live-TV, Sportübertragungen sowie Film- und Serieninhalte werden gemeinsam angeboten.',
+    'GLOBAL TV ile premium ilk izlenim hazır':'GLOBAL TV – ein moderner Premium-Auftritt','Seçtiğiniz mavi küre arka planı, yuvarlak logo dili ve neon mavi detaylarla modern, dikkat çekici ve kullanıcı dostu bir ana sayfa oluşturuldu.':'Mit blauem Globus-Hintergrund, rundem Logo-Stil und Neon-Details entsteht eine moderne und benutzerfreundliche Startseite.',
+    'Paketlere Git':'Zu den Paketen','© 2026 GLOBAL TV — En İyi Hizmetin Adresi':'© 2026 GLOBAL TV — Ihre Adresse für besten Service'
+  };
+  const originalText = new Map();
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {acceptNode(node){
+    if(!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+    const p=node.parentElement; if(!p || p.tagName==='SCRIPT' || p.tagName==='STYLE') return NodeFilter.FILTER_REJECT;
+    return de[node.nodeValue.trim()] ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+  }});
+  let n; while(n=walker.nextNode()) originalText.set(n,n.nodeValue);
+  const langButtons=[...document.querySelectorAll('.lang-btn')];
+  const waLinks=[...document.querySelectorAll('a[href*="wa.me/"]')];
+  waLinks.forEach(a=>a.dataset.trHref=a.href);
+  function setLang(lang){
+    document.documentElement.lang=lang; localStorage.setItem('globaltv-lang',lang);
+    langButtons.forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+    originalText.forEach((orig,node)=>{
+      const tr=orig.trim(), lead=(orig.match(/^\s*/)||[''])[0], tail=(orig.match(/\s*$/)||[''])[0];
+      node.nodeValue = lang==='de' ? lead+(de[tr]||tr)+tail : orig;
+    });
+    document.title=lang==='de'?'GLOBAL TV | Ihre Adresse für besten Service':'GLOBAL TV | En İyi Hizmetin Adresi';
+    const meta=document.querySelector('meta[name="description"]'); if(meta) meta.content=lang==='de'?'GLOBAL TV mit Live-TV, Sport, Filmen und Serien auf vielen Geräten.':'GLOBAL TV ile canlı TV, spor, film ve dizi içeriklerine kesintisiz erişim sağlayın.';
+    document.querySelector('.mobile-toggle')?.setAttribute('aria-label',lang==='de'?'Menü öffnen':'Menüyü aç');
+    document.querySelector('.brand')?.setAttribute('aria-label',lang==='de'?'GLOBAL TV Startseite':'GLOBAL TV ana sayfa');
+    const mobileLangLabel=document.querySelector('.mobile-lang-label');
+    if(mobileLangLabel) mobileLangLabel.textContent=lang==='de'?'SPR':'DİL';
+    waLinks.forEach(a=>{
+      if(lang==='tr'){a.href=a.dataset.trHref;return;}
+      let msg='Hallo GLOBAL TV, ich möchte weitere Informationen erhalten.';
+      const card=a.closest('.pricing-card');
+      if(card){const plan=card.querySelector('h3')?.textContent.trim()||'';msg=`Hallo GLOBAL TV, ich möchte Informationen zum ${plan}-Paket erhalten.`;}
+      a.href='https://wa.me/447729203566?text='+encodeURIComponent(msg);
+    });
+  }
+  langButtons.forEach(btn=>btn.addEventListener('click',()=>setLang(btn.dataset.lang)));
+  setLang(localStorage.getItem('globaltv-lang')==='de'?'de':'tr');
+})();
+</script>
+</body>
+</html>
