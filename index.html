@@ -360,8 +360,10 @@
       display:flex;gap:10px;justify-content:center;margin-bottom:28px;flex-wrap:wrap
     }
     .pricing-switch button{
-      padding:14px 20px;border-radius:999px;border:1px solid rgba(87,162,255,.34);background:rgba(8,18,46,.65);color:#dfeeff;font-weight:800;cursor:pointer;transition:.2s ease
+      padding:15px 24px;border-radius:999px;border:1px solid rgba(87,162,255,.38);background:rgba(8,18,46,.68);color:#dfeeff;font-weight:900;cursor:pointer;transition:.2s ease;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-width:220px
     }
+    .pricing-switch button .switch-emoji{font-size:18px;line-height:1}
+    .pricing-switch button .switch-label{display:inline-block}
     .pricing-switch button.active{background:linear-gradient(90deg,#18b3ff,#2d58ff);box-shadow:0 0 24px rgba(46,93,255,.24);border-color:rgba(110,184,255,.85)}
     .pricing-grid{display:grid;grid-template-columns:repeat(4, minmax(0,1fr)); gap:18px}
     .pricing-card{
@@ -1050,18 +1052,35 @@
   .pricing-switch{
     display:grid!important;
     grid-template-columns:1fr 1fr!important;
-    gap:8px!important;
-    margin:0 0 18px!important;
-    padding:5px!important;
-    border-radius:16px!important;
-    border:1px solid rgba(86,159,255,.18);
-    background:rgba(5,15,38,.58);
+    gap:10px!important;
+    margin:0 0 20px!important;
+    padding:7px!important;
+    border-radius:20px!important;
+    border:1px solid rgba(86,159,255,.26);
+    background:linear-gradient(180deg,rgba(6,18,45,.74),rgba(5,14,34,.92));
+    box-shadow:0 12px 28px rgba(0,0,0,.18), inset 0 0 20px rgba(54,132,255,.06);
   }
   .pricing-switch button{
-    min-height:43px!important;
-    padding:0 10px!important;
-    border-radius:12px!important;
-    font-size:11px!important;
+    min-height:56px!important;
+    padding:0 12px!important;
+    border-radius:16px!important;
+    font-size:13px!important;
+    font-weight:900!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:8px!important;
+    border:1px solid rgba(86,159,255,.28)!important;
+    background:linear-gradient(180deg,rgba(9,23,55,.88),rgba(7,18,44,.84))!important;
+    box-shadow:inset 0 0 16px rgba(42,118,255,.05);
+  }
+  .pricing-switch button .switch-emoji{font-size:16px;line-height:1;filter:drop-shadow(0 0 8px rgba(53,146,255,.22));}
+  .pricing-switch button .switch-label{display:inline-block;letter-spacing:-.01em;}
+  .pricing-switch button.active{
+    background:linear-gradient(90deg,#2bb8ff,#4470ff)!important;
+    color:#fff!important;
+    border-color:rgba(153,219,255,.95)!important;
+    box-shadow:0 0 0 1px rgba(159,219,255,.35),0 0 28px rgba(46,93,255,.28),inset 0 0 18px rgba(255,255,255,.16)!important;
   }
 
   /* domestic cards are now clearly Premium on mobile */
@@ -1508,8 +1527,8 @@
 <p>Premium ve yurt dışı kullanım için güncel GLOBAL TV paketleri. İhtiyacınıza göre hemen başlayın.</p>
 </div>
 <div class="pricing-switch">
-<button class="active" data-target="tr">Premium Paketler</button>
-<button data-target="abroad">Yurt Dışı Premium</button>
+<button class="active" data-target="tr"><span class="switch-emoji" aria-hidden="true">🇹🇷</span><span class="switch-label">Türkiye Paketleri</span></button>
+<button data-target="abroad"><span class="switch-emoji" aria-hidden="true">🌍</span><span class="switch-label">Yurt Dışı Paketleri</span></button>
 </div>
 <div class="pricing-grid" id="pricingGrid">
 <article class="pricing-card glass-panel" data-group="tr">
@@ -1628,7 +1647,7 @@
 <article class="pricing-card glass-panel hidden" data-group="abroad">
 <div class="plan">Yurt Dışı Premium</div>
 <h3>12 Ay</h3>
-<div class="price">90 <small>€</small></div>
+<div class="price">80 <small>€</small></div>
 <ul>
                 <li>1 Kullanıcı</li>
                 <li>7/24 Canlı Teknik Destek</li>
@@ -1639,7 +1658,7 @@
                 <li>Geniş İçerik Seçenekleri</li>
                 <li>Çoklu Cihaz Desteği</li>
               </ul>
-<a class="btn-ghost buy" href="https://wa.me/447729203566?text=Merhaba%20GLOBAL%20TV%2C%20Yurt%20D%C4%B1%C5%9F%C4%B1%2012%20AYLIK%20PREMIUM%20PAKET%20%2890%20%E2%82%AC%29%20paketini%20sat%C4%B1n%20almak%20istiyorum.%20Bilgi%20verebilir%20misiniz%3F" rel="noopener" target="_blank">Satın Al</a>
+<a class="btn-ghost buy" href="https://wa.me/447729203566?text=Merhaba%20GLOBAL%20TV%2C%20Yurt%20D%C4%B1%C5%9F%C4%B1%2012%20AYLIK%20PREMIUM%20PAKET%20%2880%20%E2%82%AC%29%20paketini%20sat%C4%B1n%20almak%20istiyorum.%20Bilgi%20verebilir%20misiniz%3F" rel="noopener" target="_blank">Satın Al</a>
 </article>
 </div>
 </div>
@@ -1747,7 +1766,7 @@
 </details>
 <details class="faq-item glass-panel">
 <summary>Yurt dışı paketleri ayrı mı? <span>+</span></summary>
-<p>Evet. Yurt dışı kullanım için Premium paketler ayrı sekme altında sunulmuştur: 1 ay 20 €, 3 ay 40 €, 6 ay 60 €, 12 ay 90 €.</p>
+<p>Evet. Yurt dışı kullanım için Premium paketler ayrı sekme altında sunulmuştur: 1 ay 20 €, 3 ay 40 €, 6 ay 60 €, 12 ay 80 €.</p>
 </details>
 <details class="faq-item glass-panel">
 <summary>Canlı TV ve film-dizi içerikleri var mı? <span>+</span></summary>
@@ -1821,7 +1840,7 @@
     'En güncel VOD içeriklerine kolay erişim.':'Einfacher Zugriff auf aktuelle VOD-Inhalte.','Tüm Cihazlarda':'Auf allen Geräten',
     'TV, telefon, tablet ve bilgisayarda SD, HD, FHD ve 4K destek.':'SD-, HD-, FHD- und 4K-Unterstützung auf TV, Smartphone, Tablet und Computer.',
     'Size Uygun Paketi Seçin':'Wählen Sie das passende Paket','Premium ve yurt dışı kullanım için güncel GLOBAL TV paketleri. İhtiyacınıza göre hemen başlayın.':'Aktuelle GLOBAL-TV-Pakete für die Türkei und die Nutzung im Ausland. Starten Sie direkt mit dem passenden Paket.',
-    'Premium Paketler':'Premium-Pakete','Yurt Dışı Premium':'Ausland Premium','Premium Paket':'Premium-Paket','1 Ay':'1 Monat','3 Ay':'3 Monate','6 Ay':'6 Monate','12 Ay':'12 Monate',
+    'Türkiye Paketleri':'Türkei Pakete','Yurt Dışı Paketleri':'Ausland Pakete','Premium Paketler':'Türkei Pakete','Yurt Dışı Premium':'Ausland Pakete','Premium Paket':'Premium-Paket','1 Ay':'1 Monat','3 Ay':'3 Monate','6 Ay':'6 Monate','12 Ay':'12 Monate',
     '1 Kullanıcı':'1 Benutzer','7/24 Canlı Teknik Destek':'24/7 Technischer Live-Support','Anında Aktivasyon':'Sofortige Aktivierung','Kullanıcı Kontrol Paneli':'Benutzer-Kontrollpanel',
     'En Güncel İçerik Arşivi':'Aktuelle Inhaltsbibliothek','SD, HD, FHD, 4K Yayınlar':'SD-, HD-, FHD- und 4K-Streams','Geniş İçerik Seçenekleri':'Große Inhaltsauswahl','Çoklu Cihaz Desteği':'Unterstützung für mehrere Geräte',
     'Bilgi Al':'Mehr erfahren','Satın Al':'Jetzt kaufen','Neden GLOBAL TV?':'Warum GLOBAL TV?','Premium görünüm, geniş içerik seçeneği ve kolay kullanım deneyimi ile ilk anda güven veren bir yapı.':'Ein moderner Premium-Auftritt, große Inhaltsauswahl und einfache Bedienung für einen professionellen ersten Eindruck.',
@@ -1836,7 +1855,7 @@
     "WhatsApp'tan Yaz":'Über WhatsApp schreiben','Sıkça Sorulan Sorular':'Häufig gestellte Fragen','Kullanıcıların en çok merak ettiği konuları tek alanda topladık.':'Die häufigsten Fragen haben wir hier für Sie zusammengefasst.',
     'GLOBAL TV hangi cihazlarda çalışır?':'Auf welchen Geräten funktioniert GLOBAL TV?','Smart TV, Android TV, telefon, tablet ve bilgisayar dahil pek çok cihazda kullanılabilir. Site içinde de cihaz uyumluluğu özellikle vurgulanmıştır.':'GLOBAL TV kann auf vielen Geräten genutzt werden, darunter Smart TV, Android TV, Smartphone, Tablet und Computer.',
     'Paketler nasıl aktif edilir?':'Wie werden die Pakete aktiviert?','İletişime geçtiğinizde uygun paket seçilir ve aktivasyon süreci hızlı şekilde başlatılır.':'Nach der Kontaktaufnahme wählen Sie das passende Paket und die Aktivierung wird schnell gestartet.',
-    'Yurt dışı paketleri ayrı mı?':'Gibt es separate Pakete für das Ausland?','Evet. Yurt dışı kullanım için Premium paketler ayrı sekme altında sunulmuştur: 1 ay 20 €, 3 ay 40 €, 6 ay 60 €, 12 ay 90 €.':'Ja. Premium-Pakete für die Nutzung im Ausland werden separat angeboten: 1 Monat 20 €, 3 Monate 40 €, 6 Monate 60 €, 12 Monate 90 €.',
+    'Yurt dışı paketleri ayrı mı?':'Gibt es separate Pakete für das Ausland?','Evet. Yurt dışı kullanım için Premium paketler ayrı sekme altında sunulmuştur: 1 ay 20 €, 3 ay 40 €, 6 ay 60 €, 12 ay 80 €.':'Ja. Premium-Pakete für die Nutzung im Ausland werden separat angeboten: 1 Monat 20 €, 3 Monate 40 €, 6 Monate 60 €, 12 Monate 80 €.',
     'Canlı TV ve film-dizi içerikleri var mı?':'Gibt es Live-TV sowie Filme und Serien?','Evet. Canlı TV, spor yayınları, film ve dizi arşivleri aynı yapı içinde sunulmaktadır.':'Ja. Live-TV, Sportübertragungen sowie Film- und Serieninhalte werden gemeinsam angeboten.',
     'GLOBAL TV ile premium ilk izlenim hazır':'GLOBAL TV – ein moderner Premium-Auftritt','Seçtiğiniz mavi küre arka planı, yuvarlak logo dili ve neon mavi detaylarla modern, dikkat çekici ve kullanıcı dostu bir ana sayfa oluşturuldu.':'Mit blauem Globus-Hintergrund, rundem Logo-Stil und Neon-Details entsteht eine moderne und benutzerfreundliche Startseite.',
     'Paketlere Git':'Zu den Paketen','© 2026 GLOBAL TV — En İyi Hizmetin Adresi':'© 2026 GLOBAL TV — Ihre Adresse für besten Service'
